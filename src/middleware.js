@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 export const config = {
-  matcher: ["/teacher-dashboard/:path*"],
+  matcher: ["/teacher-dashboard/:path*", "/new-exam", "/exam/:path*"],
 };
 export async function middleware(request) {
   const token = request.cookies.get("token");
