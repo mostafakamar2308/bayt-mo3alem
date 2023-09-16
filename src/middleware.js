@@ -1,2 +1,11 @@
-export { default } from "next-auth/middleware";
-export const config = { matcher: ["/app"] };
+import { NextResponse } from "next/server";
+export const config = {
+  matcher: ["/teacher-dashboard/:path*"],
+};
+export async function middleware(request) {
+  const token = request.cookies.get("token");
+  if (!token) {
+    return NextResponse.redirect(new URL("/teacher-login", request.url));
+  }
+  return NextResponse.next();
+}

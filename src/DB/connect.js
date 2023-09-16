@@ -18,7 +18,7 @@ async function dbConnect() {
     await mongoose.connect(MONGODB_URI);
     console.log("Connected tomongodb");
   } catch (e) {
-    console.error("Couldn't connect to Mongo");
+    console.error(e);
   }
 }
 
