@@ -6,7 +6,7 @@ const initialState = {
   answers: [{ correct: true, value: "" }],
 };
 
-function NewQuestionForm() {
+function NewQuestionForm({ addNewQuestion, closeModal }) {
   const [questionDetails, setQuestionDetails] = useState(initialState);
   const addAnswer = () => {
     questionDetails.answers.length < 5
@@ -47,20 +47,27 @@ function NewQuestionForm() {
     }));
   };
   return (
-    <dialog
-      id="my_modal_1"
-      className=" rounded-lg w-1/2 backdrop:bg-[rgba(0,0,0,.5)]"
-    >
-      <div className="flex flex-col w-full gap-5 p-4 overflow-hidden text-xl bg-white rounded-lg text-text ">
+    <div className="absolute w-screen h-screen bg-[rgba(0,0,0,.5)]">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addNewQuestion(questionDetails);
+          closeModal();
+        }}
+        className="absolute flex flex-col w-1/2 gap-5 p-4 overflow-hidden text-xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg top-1/2 left-1/2 text-text "
+      >
         <div className="">
           <input
+            required
             placeholder="رأس السؤال"
             onChange={changeQuestionHead}
             className="w-3/4 p-3 mb-4 bg-transparent border-b-2"
           />
+
           {questionDetails.answers.map((answer, index) => (
             <div className="flex items-end gap-4 mb-2" key={index}>
               <input
+                required
                 onChange={changeAnswerText}
                 id={index}
                 className="w-3/4 p-3 bg-transparent border-b-2"
@@ -84,15 +91,26 @@ function NewQuestionForm() {
           </button>
         </div>
         <div className="flex self-end gap-4">
-          <button className="p-2 text-xl rounded-md bg-orange">حفظ</button>
-          <form method="dialog">
-            <button className="p-2 text-xl text-white rounded-md bg-purple">
-              إلغاء
-            </button>
-          </form>
+          <button
+            type="submit"
+            className="p-2 text-xl rounded-md bg-orange"
+            onSubmit={(e) => {
+              e.preventDefault();
+              addNewQuestion(questionDetails);
+              closeModal();
+            }}
+          >
+            حفظ
+          </button>
+          <button
+            onClick={closeModal}
+            className="p-2 text-xl text-white rounded-md bg-purple"
+          >
+            إلغاء
+          </button>
         </div>
-      </div>
-    </dialog>
+      </form>
+    </div>
   );
 }
 
