@@ -6,9 +6,13 @@ async function Nav() {
   const teacherDetails = await getTeacherDetails();
   return (
     <header className="flex justify-between p-4">
-      <h1 className="text-3xl font-bold">
-        <Link href={"/"}>مدرستى</Link>
-      </h1>
+      <Link href={"/"}>
+        <h1 className="text-3xl font-bold">بيت المعلم</h1>
+      </Link>
+      <div className="flex items-center gap-8 text-xl">
+        <Link href={"/about"}>من نحن</Link>
+        <Link href={"/contact-us"}>تواصل معنا</Link>
+      </div>
       {teacherDetails ? (
         <div className="flex items-center gap-8 text-md">
           <Link
@@ -21,14 +25,11 @@ async function Nav() {
         </div>
       ) : (
         <nav className="flex items-center gap-8 text-lg">
-          <Link href={"/teacher-login"} className="font-bold">
-            تسجيل الدخول
-          </Link>
           <Link
             href="/teacher-register"
             className="px-3 py-2 font-bold rounded-md bg-orange"
           >
-            سجل حساب جديد
+            سجل مجانا
           </Link>
         </nav>
       )}

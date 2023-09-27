@@ -24,11 +24,14 @@ export async function POST(request) {
     } else {
       const token = jwt.sign(
         { email: teacher.email, id: teacher._id },
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,
+        { expiresIn: "24h" }
       );
       const cookieStore = cookies();
-      cookieStore.set("token", token);
-      return NextResponse.json({ success: true }, { status: "201" });
+      cookieStore.set("token", token, {
+        expires: Date.now() + 24 * 60 * 60 * 1000,
+      });
+      return NextResponse.json({ success: true }, { status: 201 });
     }
   } catch (e) {
     console.error(e);

@@ -31,7 +31,7 @@ function RegisterationForm() {
     }
   };
   return (
-    <form onSubmit={handleRegister} className="flex flex-col gap-2">
+    <form onSubmit={handleRegister} className="flex flex-col gap-2 text-white">
       <input
         name="email"
         placeholder="mrMohamed@gmail.com"
@@ -72,7 +72,7 @@ function RegisterationForm() {
       />
       <button
         onClick={handleRegister}
-        className="py-3 mt-4 font-bold bg-orange"
+        className="py-3 mt-4 font-bold text-gray-700 bg-orange"
       >
         Register
       </button>

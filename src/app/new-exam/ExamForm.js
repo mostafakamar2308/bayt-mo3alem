@@ -73,9 +73,13 @@ function ExamForm() {
           </select>
         </div>
 
-        <div className="flex gap-4">
-          <button>عرض</button>
-          <button>حفظ ونشر</button>
+        <div className="flex gap-4 text-xl">
+          <button className="px-2 border-2 border-gray-400 rounded-lg hover:shadow-md">
+            عرض
+          </button>
+          <button className="px-2 font-bold border-2 border-gray-400 rounded-lg bg-orange hover:shadow-md">
+            حفظ ونشر
+          </button>
         </div>
       </div>
       <div className="flex flex-col items-center gap-4 m-4">
