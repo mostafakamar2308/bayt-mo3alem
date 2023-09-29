@@ -4,6 +4,7 @@ const initialState = {
   type: "MCQ",
   questionHead: "",
   answers: [{ correct: true, value: "" }],
+  explaination: "",
 };
 
 function NewQuestionForm({ addNewQuestion, closeModal }) {
@@ -16,8 +17,11 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
         }))
       : "";
   };
-  const changeQuestionHead = (e) => {
-    setQuestionDetails((prev) => ({ ...prev, questionHead: e.target.value }));
+  const handleChange = (e) => {
+    setQuestionDetails((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
   const changeCorrectAnswer = (e) => {
     const id = e.target.id;
@@ -47,7 +51,7 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
     }));
   };
   return (
-    <div className="absolute w-screen h-screen bg-[rgba(0,0,0,.5)]">
+    <div className="fixed w-screen h-screen bg-[rgba(0,0,0,.5)]">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -57,10 +61,11 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
         className="absolute flex flex-col w-1/2 gap-5 p-4 overflow-hidden text-xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg top-1/2 left-1/2 text-text "
       >
         <div className="">
-          <input
+          <textarea
             required
+            name="questionHead"
             placeholder="رأس السؤال"
-            onChange={changeQuestionHead}
+            onChange={handleChange}
             className="w-3/4 p-3 mb-4 bg-transparent border-b-2"
           />
 
@@ -89,6 +94,13 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
           >
             + أضف اجابة...{" "}
           </button>
+          <textarea
+            name="explaination"
+            placeholder="تفسير الاجابة"
+            className="w-3/4 p-3 bg-transparent border-2 rounded-md"
+            onChange={handleChange}
+            value={questionDetails.explaination}
+          ></textarea>
         </div>
         <div className="flex self-end gap-4">
           <button

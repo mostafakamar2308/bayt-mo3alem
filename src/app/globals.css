@@ -12,3 +12,10 @@ h3 {
 * {
   font-family: "Scheherazade New", serif;
 }
+.react-calendar-datetime-picker {
+  flex-grow: 1;
+}
+
+.react-calendar-datetime-picker input {
+  padding: 1rem !important;
+}

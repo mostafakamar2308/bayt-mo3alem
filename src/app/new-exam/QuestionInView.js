@@ -32,6 +32,11 @@ function QuestionInView({ question, changeQuestionAnswer }) {
           />
         </div>
       ))}
+      <div className="p-2 mt-2 border rounded-md ">
+        تفسير الاجابة:
+        <br></br>
+        {question.explaination}
+      </div>
     </div>
   );
 }
