@@ -96,7 +96,7 @@ function LeadRegisterationForm() {
       </div>
       <button
         onClick={handleSubmit}
-        disabled={formState.state === "pending"}
+        // disabled={formState.state === "pending"}
         className="px-3 py-2 text-2xl font-bold bg-white border rounded-md disabled:bg-offWhite text-darkGray"
       >
         {formState.state !== "pending" ? "سجل الان" : "..."}
