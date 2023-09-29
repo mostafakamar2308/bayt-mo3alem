@@ -1,9 +1,6 @@
 import dbConnect from "@/DB/connect";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import Nav from "@/Components/Nav";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "بيت المعلم",
@@ -11,9 +8,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  // await dbConnect();
+  await dbConnect();
   return (
-    <html lang="en" dir="rtl">
+    <html lang="en" dir="rtl" className="scroll-smooth ">
       <body className="flex flex-col min-h-screen bg-offWhite text-text">
         <Nav />
         <main className="grow">{children}</main>

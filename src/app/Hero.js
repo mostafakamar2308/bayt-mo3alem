@@ -3,7 +3,7 @@ import tick from "@/Assets/tick.png";
 import Image from "next/image";
 function Hero() {
   return (
-    <section className="flex flex-col items-center gap-8 p-10 mt-10 lg:mt-20">
+    <section className="flex flex-col items-center gap-8 p-10 pb-20 mt-10 lg:mt-20">
       <h2 className="text-4xl font-bold text-center lg:text-5xl">
         بيتك الدافئ لإعداد الإمتحانات وتحليل بيانات طلابك
       </h2>
@@ -23,8 +23,8 @@ function Hero() {
           </li>
         </ul>
         <Link
-          href={"/teacher-register"}
-          className="w-2/3 p-4 text-3xl font-semibold text-center rounded-md bg-orange"
+          href="/#register"
+          className="w-2/3 p-4 mt-2 text-3xl font-semibold text-center rounded-md bg-orange"
         >
           سجل الان
         </Link>

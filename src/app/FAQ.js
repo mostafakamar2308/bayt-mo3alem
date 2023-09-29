@@ -8,7 +8,7 @@ function FAQ({ children, title }) {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <button
-        className="flex gap-4 py-3 text-2xl border-b-2 justify-between lg:w-1/2 text-center border-[rgba(0,0,0,.7)]"
+        className="flex gap-4 py-3 text-2xl border-b-2 justify-between w-full lg:w-1/2 text-center border-[rgba(0,0,0,.7)]"
         onClick={() => setActive((prev) => !prev)}
       >
         {title}
@@ -20,7 +20,7 @@ function FAQ({ children, title }) {
           alt="arrow"
         />
       </button>
-      <div>{active && children}</div>
+      {active && children}
     </div>
   );
 }
