@@ -18,7 +18,7 @@ export async function POST(request) {
       process.env.JWT_SECRET
     );
     const cookieStore = cookies();
-    cookieStore.set("token", token);
+    cookieStore.set("student-token", token);
     return NextResponse.json({ success: true, token });
   } catch (error) {
     return NextResponse.json({

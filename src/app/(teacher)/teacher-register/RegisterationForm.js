@@ -17,7 +17,7 @@ function RegisterationForm() {
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    const req = await fetch("/api/register", {
+    const req = await fetch("/api/register-teacher", {
       method: "POST",
       body: JSON.stringify(formDetails),
     });

@@ -1,12 +1,11 @@
 import Image from "next/image";
-import LoginForm from "./LoginForm";
-import register1 from "@/Assets/register1.png";
 import Link from "next/link";
-
+import img from "@/Assets/signin-student.png";
+import LoginForm from "./LoginForm";
 export default function Page() {
   return (
     <div className="flex items-center justify-center h-full ">
-      <Image src={register1} alt="Image 1" />
+      <Image src={img} alt="Image 1" className="w-2/5" />
       <div className="w-[40%] p-8 h-fit border text-center bg-white rounded-2xl">
         <h2 className="text-2xl font-bold">السلام عليكم</h2>
         <p className="mb-8 text-lg font-semibold">
@@ -16,7 +15,7 @@ export default function Page() {
         <p className="mt-2">
           ليس لديك حساب؟{" "}
           <Link
-            href={"/teacher-register"}
+            href={"/student-register"}
             className="transition-all duration-300 border-b-2 hover:border-lightBlue "
           >
             سجل حساب جديد

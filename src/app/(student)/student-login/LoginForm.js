@@ -1,4 +1,5 @@
 "use client";
+import { toastError, toastSuccess } from "@/Components/Toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -8,21 +9,23 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  const [requestState, setRequestState] = useState("Pending");
   const handleSignIn = async function (e) {
     e.preventDefault();
-    const req = await fetch("/api/signIn-teacher", {
-      method: "POST",
-      body: JSON.stringify(formDetails),
-    });
-    const response = await req.json();
-    if (response.success) {
-      setRequestState("Success");
-      setRequestState("Success");
-      Router.push("/teacher-dashboard");
-      Router.refresh();
-    } else {
-      setRequestState("Failed");
+    try {
+      const req = await fetch("/api/signIn-student", {
+        method: "POST",
+        body: JSON.stringify(formDetails),
+      });
+      const response = await req.json();
+      if (response.success) {
+        Router.push("/student-dashboard");
+        Router.refresh();
+        toastSuccess("تم تسجيل الدخول بنجاح");
+      } else {
+        toastError("حدث خطأ ما، تأكد من الايميل والباسورد");
+      }
+    } catch (error) {
+      toastError("حدث خطأ ما، تأكد من الايميل والباسورد");
     }
   };
   const handleInput = function (e) {
@@ -47,10 +50,6 @@ function LoginForm() {
       <button className="py-3 mt-4 font-bold bg-orange" onClick={handleSignIn}>
         Submit
       </button>
-
-      {requestState === "Failed" && (
-        <div className="text-xl text-red-600">حدث خطأ حاول مرة أخري</div>
-      )}
     </form>
   );
 }
