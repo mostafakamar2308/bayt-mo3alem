@@ -20,15 +20,17 @@ const StudentSchema = new mongoose.Schema({
     ],
     unique: true,
   },
-  Gender: {
-    type: "Male" || "Female",
-  },
   password: {
     type: String,
     required: [true, "Please provide password"],
     minlength: 6,
   },
-  phoneNumber: {
+  grade: {
+    type: String,
+    required: [true, "Please provide grade"],
+  },
+
+  parentPhoneNumber: {
     type: Number,
     required: [true, "Please provide a valid phone number"],
   },
