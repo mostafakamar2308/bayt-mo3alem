@@ -1,14 +1,17 @@
 // models/User.js
 
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 
 const ExamSchema = new mongoose.Schema({
-  name: {
+  examName: {
     type: String,
     required: [true, "Please provide name"],
     maxlength: 50,
     minlength: 3,
+  },
+  grade: {
+    type: String,
+    required: [true, "Please provide a Grade"],
   },
   totalScore: {
     type: Number,
@@ -17,23 +20,27 @@ const ExamSchema = new mongoose.Schema({
   Questions: {
     type: [
       {
-        title: String,
+        questionHead: String,
         Answers: [String],
-        correctAnswer: String,
-        studentsWhoAnswer: Number,
-        mostFrequentAnswer: String,
-        questionLevel: Number,
-        itemDiscrimination: Number,
+        explaination: String,
       },
     ],
-    required: [true, "Please provide Questions"],
+    required: [true, "You can't have exams without questions"],
+  },
+  from: {
+    type: Date,
+    required: [true, "Please provide a beginning Date"],
+  },
+  to: {
+    type: Date,
+    required: [true, "Please provide an end Date"],
   },
   teacherId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     required: [true, "Please provide Teacher Id"],
   },
   studentIds: {
-    type: [Schema.Types.ObjectId],
+    type: [mongoose.Schema.Types.ObjectId],
   },
   stats: {
     type: {

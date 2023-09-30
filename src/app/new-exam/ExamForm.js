@@ -6,12 +6,10 @@ import { createPortal } from "react-dom";
 import NewQuestionForm from "./NewQuestionForm";
 import { grades } from "@/constants";
 import QuestionInView from "./QuestionInView";
-import {
-  DtPicker,
-  convertToEn,
-  convertToFa,
-} from "react-calendar-datetime-picker";
+import { DtPicker } from "react-calendar-datetime-picker";
 import "react-calendar-datetime-picker/dist/style.css";
+import { useRouter } from "next/navigation";
+import { toastError, toastSuccess } from "@/Components/Toast";
 
 function ExamForm() {
   const [examDetails, setExamDetails] = useState({
@@ -21,6 +19,7 @@ function ExamForm() {
     from: "",
     to: "",
   });
+  const Router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const [newQuestionModal, setNewQuestionModal] = useState(false);
   useEffect(() => {
@@ -37,6 +36,21 @@ function ExamForm() {
       ...prev,
       questions: [...prev.questions, question],
     }));
+  };
+
+  const handleSubmit = async () => {
+    const req = await fetch("/api/teacher/createExam", {
+      method: "POST",
+      body: JSON.stringify(examDetails),
+    });
+    const response = await req.json();
+    console.log(response);
+    if (response && response.success) {
+      toastSuccess("تم نشر الامتحان بنجاح");
+      Router.push("/teacher-dashboard");
+    } else {
+      toastError("حدث خطأ حاول مرة أخري");
+    }
   };
 
   const changeQuestionAnswer = (newQuestion) => {
@@ -126,7 +140,10 @@ function ExamForm() {
           <button className="px-4 py-2 border-2 border-gray-400 rounded-lg hover:shadow-md">
             عرض
           </button>
-          <button className="px-4 py-2 font-bold border-2 border-gray-400 rounded-lg bg-orange hover:shadow-md">
+          <button
+            onClick={handleSubmit}
+            className="px-4 py-2 font-bold border-2 border-gray-400 rounded-lg bg-orange hover:shadow-md"
+          >
             حفظ ونشر
           </button>
         </div>
