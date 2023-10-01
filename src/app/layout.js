@@ -1,6 +1,5 @@
 import dbConnect from "@/DB/connect";
 import "./globals.css";
-import Nav from "@/Components/Nav";
 import { ToastContainer } from "react-toastify";
 
 export const metadata = {
@@ -9,11 +8,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  await dbConnect();
   return (
     <html lang="en" dir="rtl" className="scroll-smooth ">
       <body className="flex flex-col min-h-screen bg-offWhite text-text">
-        <Nav />
         <ToastContainer />
         <main className="grow">{children}</main>
       </body>

@@ -1,12 +1,13 @@
 import dbConnect from "@/DB/connect";
 import { cookies } from "next/headers";
 import exam from "@/DB/Models/Exam";
+import Teacher from "@/DB/Models/Teacher";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 export async function POST(request) {
-  const { examName, grade, questions, from, to } = await request.json();
+  const { examName, grade, questions, from } = await request.json();
   try {
     await dbConnect();
     const token = cookies().get("token");
@@ -18,9 +19,11 @@ export async function POST(request) {
       totalScore: questions.length,
       questions,
       from,
-      to,
       teacherId,
     });
+    let teacher = await Teacher.findOne({ _id: teacherId });
+    teacher.examIds.push(newExam._id);
+    teacher = await teacher.save();
     return NextResponse.json({ newExam, success: true });
   } catch (error) {
     return NextResponse.json({ error, success: false });

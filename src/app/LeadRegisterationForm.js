@@ -1,5 +1,6 @@
 "use client";
 
+import { toastError, toastSuccess } from "@/Components/Toast";
 import { useState } from "react";
 
 function LeadRegisterationForm() {
@@ -8,7 +9,6 @@ function LeadRegisterationForm() {
     phone: "",
     subject: "arabic",
   });
-  const [formState, setFormState] = useState({ state: "" });
   const handleChange = (e) => {
     setLeadFormDetails((prev) => ({
       ...prev,
@@ -17,7 +17,6 @@ function LeadRegisterationForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormState({ state: "pending" });
     const req = await fetch("/api/register-lead", {
       method: "POST",
       body: JSON.stringify(leadFormDetails),
@@ -25,9 +24,9 @@ function LeadRegisterationForm() {
     const response = await req.json();
     console.log(response);
     if (response.success) {
-      setFormState({ state: "success" });
+      toastSuccess("تم تسجيلك بنجاح");
     } else {
-      setFormState({ state: "failure" });
+      toastError("حدث خطأ ما، حاول مجددا");
     }
   };
   return (
@@ -97,11 +96,11 @@ function LeadRegisterationForm() {
       <button
         onClick={handleSubmit}
         // disabled={formState.state === "pending"}
-        className="px-3 py-2 text-2xl font-bold bg-white border rounded-md disabled:bg-offWhite text-darkGray"
+        className="px-3 py-2 text-2xl font-bold text-black bg-white border rounded-md disabled:bg-offWhite"
       >
-        {formState.state !== "pending" ? "سجل الان" : "..."}
+        سجل الان{" "}
       </button>
-      {formState.state === "success" && (
+      {/* {formState.state === "success" && (
         <div className="mt-2 text-sm text-center text-green-500">
           تم التسجيل بنجاح، سيتم التواصل معك قريبا إن شاء الله
         </div>
@@ -110,7 +109,7 @@ function LeadRegisterationForm() {
         <div className="mt-2 text-sm text-center text-red-400">
           حدث خطأ، تأكد من البيانات
         </div>
-      )}
+      )} */}
     </form>
   );
 }

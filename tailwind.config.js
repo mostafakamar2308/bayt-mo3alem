@@ -9,6 +9,10 @@ module.exports = {
     extend: {
       colors: {
         orange: "#fec786",
+        primary: "#3C7240",
+        secondary: "#D0D3CF",
+        background: "#E7FEDC",
+        accent: "#5D5874",
         lightBlue: "#6aa2b8",
         darkBlue: "#0064a4",
         gold: "#ffd200",
@@ -16,8 +20,8 @@ module.exports = {
         darkGray: "#555759",
         purple: "#1b3d6d",
         trueGray: "#ecedf0",
-        offWhite: "#f6f2eb",
-        text: "#443e36",
+        offWhite: "#E7FEDC",
+        text: "#0C2301",
       },
       backgroundImage: {},
     },

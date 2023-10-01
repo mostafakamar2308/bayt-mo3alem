@@ -4,7 +4,6 @@ import dbConnect from "@/DB/connect";
 
 export async function POST(req) {
   await dbConnect();
-  console.log("db connected");
   const { name, phone, subject } = await req.json();
   try {
     const newLead = await Lead.create({

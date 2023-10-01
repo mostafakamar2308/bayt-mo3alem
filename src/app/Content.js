@@ -30,7 +30,7 @@ function Content() {
       </ul>
       <Link
         href={"/#register"}
-        className="self-center px-8 py-3 my-4 text-3xl text-center rounded-md w-fit bg-orange"
+        className="self-center px-8 py-3 my-4 text-3xl text-center text-white rounded-md shadow-md shadow-primary w-fit bg-accent"
       >
         سجل الان
       </Link>

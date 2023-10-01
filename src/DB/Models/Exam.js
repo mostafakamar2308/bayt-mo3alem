@@ -31,10 +31,6 @@ const ExamSchema = new mongoose.Schema({
     type: Date,
     required: [true, "Please provide a beginning Date"],
   },
-  to: {
-    type: Date,
-    required: [true, "Please provide an end Date"],
-  },
   teacherId: {
     type: mongoose.Schema.Types.ObjectId,
     required: [true, "Please provide Teacher Id"],

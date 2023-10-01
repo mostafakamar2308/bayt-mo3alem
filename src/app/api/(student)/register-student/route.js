@@ -2,10 +2,12 @@ import Student from "@/DB/Models/Student";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import dbConnect from "@/DB/connect";
 export async function POST(request) {
   try {
     const { name, email, password, parentPhoneNumber, grade } =
       await request.json();
+    await dbConnect();
     const newStudent = await Student.create({
       name,
       email: email.toLowerCase(),

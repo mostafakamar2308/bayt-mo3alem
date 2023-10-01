@@ -24,7 +24,7 @@ function Hero() {
         </ul>
         <Link
           href="/#register"
-          className="w-2/3 p-4 mt-2 text-3xl font-semibold text-center rounded-md bg-orange"
+          className="w-2/3 p-4 mt-2 text-3xl font-semibold text-center text-white rounded-md shadow-md bg-accent"
         >
           سجل الان
         </Link>

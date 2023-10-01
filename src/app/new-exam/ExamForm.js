@@ -17,7 +17,6 @@ function ExamForm() {
     grade: "grade 1",
     questions: [],
     from: "",
-    to: "",
   });
   const Router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
@@ -71,11 +70,10 @@ function ExamForm() {
     });
   };
   const handleChangeCalendar = (result) => {
-    if (result && result.to) {
+    if (result) {
       setExamDetails((prev) => ({
         ...prev,
-        from: new Date(result.from.year, result.from.month, result.from.day),
-        to: new Date(result.to.year, result.to.month, result.to.day),
+        from: new Date(result.year, result.month, result.day),
       }));
     }
   };
@@ -105,9 +103,7 @@ function ExamForm() {
           showTimeInput
           onChange={handleChangeCalendar}
           placeholder="تاريخ بداية الامتحان"
-          type="range"
           fromLabel="من يوم:"
-          toLabel="إلي يوم:"
           inputClass=" bg-transparent "
         />
       </div>

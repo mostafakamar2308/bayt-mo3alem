@@ -1,6 +1,4 @@
 import Link from "next/link";
-import LogoutBtn from "./LogoutBtn";
-import { getTeacherDetails } from "@/utils/teacherDetailsFromToken";
 
 async function Nav() {
   // const teacherDetails = await getTeacherDetails();
@@ -31,7 +29,7 @@ async function Nav() {
 
         <Link
           href="/#register"
-          className="px-3 py-2 font-bold rounded-md bg-orange"
+          className="px-3 py-2 font-bold text-white rounded-md bg-accent"
         >
           سجل مجانا
         </Link>

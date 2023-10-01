@@ -2,9 +2,11 @@ import Student from "@/DB/Models/Student";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import dbConnect from "@/DB/connect";
 export async function POST(request) {
   try {
     const { email, password } = await request.json();
+    await dbConnect();
     if (!email || !password) {
       return NextResponse.json({
         success: false,

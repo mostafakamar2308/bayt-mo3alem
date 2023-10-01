@@ -1,12 +1,14 @@
 import { getTeacherDetails } from "@/utils/teacherDetailsFromToken";
+import { redirect } from "next/navigation";
 
-import Link from "next/link";
 async function page() {
   const details = await getTeacherDetails();
+  if (!details) {
+    redirect("/teacher-login");
+  }
   return (
     <div className="p-2">
-      <div>Exams</div>
-      <div>Students</div>
+      <h2>أهلا بك يا أستاذ: {details.name}</h2>
     </div>
   );
 }

@@ -2,9 +2,11 @@ import User from "@/DB/Models/Teacher";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import dbConnect from "@/DB/connect";
 export async function POST(request) {
   try {
     const { name, email, password, phoneNumber, gender } = await request.json();
+    await dbConnect();
     const newUser = await User.create({
       name,
       email: email.toLowerCase(),
