@@ -118,9 +118,10 @@ function ExamForm() {
       </div>
       <button
         onClick={toggleNewQuestionPop}
-        className="fixed w-24 h-24 rounded-full bottom-10 left-10"
+        className="fixed flex gap-4 p-2 rounded-full bg-secondary w-44 bottom-10 left-10"
       >
-        <Image src={plus} alt="add new question" />
+        <Image src={plus} alt="add new question" width={28} />
+        أضف سؤال جديد
       </button>
       {isMounted && newQuestionModal
         ? createPortal(

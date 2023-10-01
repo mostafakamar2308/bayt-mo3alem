@@ -12,7 +12,7 @@ export default async function RootLayout({ children }) {
     <html lang="en" dir="rtl" className="scroll-smooth ">
       <body className="flex flex-col min-h-screen bg-offWhite text-text">
         <ToastContainer />
-        <main className="grow">{children}</main>
+        <main className=" grow">{children}</main>
       </body>
     </html>
   );

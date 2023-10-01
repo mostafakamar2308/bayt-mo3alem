@@ -112,7 +112,7 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
               closeModal();
             }}
           >
-            حفظ
+            أضف السؤال
           </button>
           <button
             onClick={closeModal}
