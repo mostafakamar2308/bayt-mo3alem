@@ -41,11 +41,8 @@ const StudentSchema = new mongoose.Schema({
         timeSpent: Number,
         rawScore: Number,
         percentileScore: Number,
-        percentileRank: Number,
-        examFeedBack: String,
-        weakPoints: [String],
       },
-      examAnswers: [String],
+      examAnswers: [{ questionHead: String, choosenAnswer: String }],
     },
   ],
   teacherIds: {

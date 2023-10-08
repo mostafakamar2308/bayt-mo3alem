@@ -21,7 +21,7 @@ const ExamSchema = new mongoose.Schema({
     type: [
       {
         questionHead: String,
-        Answers: [String],
+        answers: [{ correct: Boolean, value: String }],
         explaination: String,
       },
     ],

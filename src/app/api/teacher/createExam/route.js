@@ -17,7 +17,7 @@ export async function POST(request) {
       examName,
       grade,
       totalScore: questions.length,
-      questions,
+      Questions: questions,
       from,
       teacherId,
     });

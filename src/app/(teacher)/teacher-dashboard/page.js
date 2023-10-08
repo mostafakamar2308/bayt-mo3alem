@@ -8,7 +8,7 @@ async function page() {
   if (!details) {
     redirect("/teacher-login");
   }
-
+  console.log(details);
   return (
     <div className="p-4 py-8">
       <h2 className="pb-4 text-3xl border-b-2 w-fit border-accent">
