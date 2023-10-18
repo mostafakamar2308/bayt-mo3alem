@@ -17,6 +17,7 @@ function LoginForm() {
         body: JSON.stringify(formDetails),
       });
       const response = await req.json();
+      console.log(response);
       if (response.success) {
         Router.push("/student-dashboard");
         Router.refresh();

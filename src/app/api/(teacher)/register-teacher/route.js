@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 import dbConnect from "@/DB/connect";
 export async function POST(request) {
   try {
-    const { name, email, password, phoneNumber, gender } = await request.json();
+    const { name, email, password, phoneNumber, gender, subject } =
+      await request.json();
     await dbConnect();
     const newUser = await User.create({
       name,
@@ -13,6 +14,7 @@ export async function POST(request) {
       password,
       gender,
       phoneNumber,
+      subject,
     });
     const token = jwt.sign(
       { email: newUser.email, id: newUser._id },

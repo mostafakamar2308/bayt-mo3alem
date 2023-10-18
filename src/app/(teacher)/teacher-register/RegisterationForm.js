@@ -1,4 +1,5 @@
 "use client";
+import { subjects } from "@/constants";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,6 +11,7 @@ function RegisterationForm() {
     name: "",
     phoneNumber: "",
     gender: "male",
+    subject: "arabic",
   });
   const [requestState, setRequestState] = useState("Pending");
   const handleChange = (e) => {
@@ -62,6 +64,18 @@ function RegisterationForm() {
           onChange={handleChange}
         />
       </div>
+      <select
+        className="p-2 text-xl border-2 rounded-md"
+        name="subject"
+        onChange={handleChange}
+        value={formDetails.subject}
+      >
+        {subjects.map((subject) => (
+          <option value={subject.value} key={subject.value}>
+            {subject.name}
+          </option>
+        ))}
+      </select>
       <input
         name="password"
         placeholder="***********"

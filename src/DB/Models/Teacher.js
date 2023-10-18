@@ -2,6 +2,7 @@
 
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import { subjects } from "@/constants";
 
 const TeacherSchema = new mongoose.Schema({
   name: {
@@ -23,6 +24,10 @@ const TeacherSchema = new mongoose.Schema({
   gender: {
     type: String,
     enum: ["male", "female"],
+  },
+  subject: {
+    type: String,
+    required: [true, "Please provide a subject"],
   },
   password: {
     type: String,

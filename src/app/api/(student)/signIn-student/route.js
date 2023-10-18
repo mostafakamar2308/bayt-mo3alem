@@ -18,6 +18,7 @@ export async function POST(request) {
       return NextResponse.json({ success: false, message: "No student found" });
     }
     const isMatch = await student.comparePassword(password);
+    console.log(isMatch);
     if (!isMatch) {
       return NextResponse.json({
         success: false,

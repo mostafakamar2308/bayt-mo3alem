@@ -50,11 +50,12 @@ const StudentSchema = new mongoose.Schema({
   },
 });
 StudentSchema.pre("save", async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  this.password = await bcrypt.hash(this.password, 10);
+  console.log(this.password, this);
 });
 
 StudentSchema.methods.comparePassword = async function (canditatePassword) {
+  console.log({ canditatePassword, hashedPass: this.password });
   const isMatch = await bcrypt.compare(canditatePassword, this.password);
   return isMatch;
 };

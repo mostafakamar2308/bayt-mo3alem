@@ -12,8 +12,10 @@ async function page({ params }) {
   await dbConnect();
   const { value } = cookies().get("student-token");
   const studentData = jwt.verify(value, process.env.JWT_SECRET);
-  console.log(studentData);
   const exam = await Exam.findById(examID);
+  if (!exam) {
+    redirect("/student-dashboard");
+  }
   console.log(
     exam.studentIds
       .map((student) => student.toString())

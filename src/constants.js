@@ -12,3 +12,19 @@ export const grades = [
   { name: "الصف الثانى الثانوى", value: "grade 11" },
   { name: "الصف الثالث الثانوى", value: "grade 12" },
 ];
+
+export const subjects = [
+  { name: "اللغة العربية", value: "arabic" },
+  { name: "اللغة الإنجليزية", value: "english" },
+  { name: "اللغة الفرنسية", value: "french" }, // French
+  { name: "اللغة الألمانية", value: "german" }, // German
+  { name: "اللغة الإيطالية", value: "italian" }, // Italian
+  { name: "اللغة الإسبانية", value: "spanish" }, // Spanish
+  { name: "الجغرافيا", value: "geography" },
+  { name: "التاريخ", value: "history" },
+  { name: "الفلسفة", value: "philosophy" },
+  { name: "الرياضيات", value: "mathematics" }, // Mathematics
+  { name: "الكيمياء", value: "chemistry" },
+  { name: "الأحياء", value: "biology" },
+  { name: "الفيزياء", value: "physics" },
+];
