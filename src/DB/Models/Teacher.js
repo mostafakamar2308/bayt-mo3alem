@@ -33,9 +33,11 @@ const TeacherSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide password"],
     minlength: 6,
+    maxlength: 100,
   },
   phoneNumber: {
     type: Number,
+    unique: true,
     required: [true, "Please provide a valid phone number"],
   },
   examIds: {
@@ -46,6 +48,8 @@ const TeacherSchema = new mongoose.Schema({
   },
 });
 TeacherSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });

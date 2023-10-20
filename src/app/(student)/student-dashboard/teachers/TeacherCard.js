@@ -1,10 +1,17 @@
 "use client";
-
 import Link from "next/link";
 import teacherImage from "@/Assets/teacher.png";
 import Image from "next/image";
 
 function TeacherCard({ teacher }) {
+  const handleSubsribe = async () => {
+    const request = await fetch("/api/subscribe-to-teacher", {
+      method: "PUT",
+      body: JSON.stringify({ teacherPhoneNumber: teacher.phoneNumber }),
+    });
+    const response = await request.json();
+    console.log(response);
+  };
   return (
     <div className="flex items-center justify-center mt-4">
       <div className="flex w-4/5 gap-4 p-4 border rounded-md border-accent">
@@ -24,7 +31,7 @@ function TeacherCard({ teacher }) {
             </h3>
           </Link>
           <h4 className="text-xl">رقم الهاتف: 0{teacher.phoneNumber}</h4>
-          <h4 className="text-lg">عدد الامتحانات الشهرية: 10</h4>
+          <h4 className="text-lg">عدد امتحاناته: {teacher.examIds.length}</h4>
         </div>
         <div className="flex flex-col justify-center gap-2">
           <h4
@@ -33,7 +40,10 @@ function TeacherCard({ teacher }) {
           >
             سعر الامتحانات في الشهر: 20
           </h4>
-          <button className="p-4 text-xl rounded-md shadow-md bg-orange">
+          <button
+            onClick={handleSubsribe}
+            className="p-4 text-xl rounded-md shadow-md bg-orange"
+          >
             اشترك مع المدرس
           </button>
         </div>

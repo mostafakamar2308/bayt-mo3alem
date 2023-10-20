@@ -11,6 +11,10 @@
   "dependencies": {
     "@dicebear/collection": "^7.0.1",
     "@dicebear/core": "^7.0.1",
+    "@fullcalendar/core": "^6.1.9",
+    "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/interaction": "^6.1.9",
+    "@fullcalendar/react": "^6.1.9",
     "@resvg/resvg-js": "^2.4.1",
     "autoprefixer": "10.4.15",
     "bcrypt": "^5.1.1",

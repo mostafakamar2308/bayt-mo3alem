@@ -3,6 +3,9 @@ import { redirect } from "next/navigation";
 import ExamCard from "./ExamCard";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 async function page() {
   const details = await getTeacherDetails();
   if (!details) {
@@ -17,7 +20,7 @@ async function page() {
       <p className="mt-4 text-xl">هذه هي الامتحانات التي صممتها إلي الان:</p>
       <div className="flex flex-col gap-4 p-2">
         {details.examIds.map((id) => {
-          return <ExamCard examId={id} />;
+          return <ExamCard examId={id} key={id} />;
         })}
       </div>
       <Link

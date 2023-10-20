@@ -23,6 +23,7 @@ const StudentSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please provide password"],
+    maxlength: 100,
     minlength: 6,
   },
   grade: {
@@ -50,6 +51,8 @@ const StudentSchema = new mongoose.Schema({
   },
 });
 StudentSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+
   this.password = await bcrypt.hash(this.password, 10);
   console.log(this.password, this);
 });

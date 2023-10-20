@@ -71,9 +71,10 @@ function ExamForm() {
   };
   const handleChangeCalendar = (result) => {
     if (result) {
+      console.log(result);
       setExamDetails((prev) => ({
         ...prev,
-        from: new Date(result.year, result.month, result.day),
+        from: new Date(result.year, result.month - 1, result.day),
       }));
     }
   };

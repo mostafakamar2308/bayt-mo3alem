@@ -14,6 +14,7 @@ export async function GET(request) {
     subject: teacher.subject,
     gender: teacher.gender,
     id: teacher._id.toString(),
+    examIds: teacher.examIds.map((id) => id.toString()),
   }));
   return NextResponse.json({ success: true, teachers: teachersArr });
 }

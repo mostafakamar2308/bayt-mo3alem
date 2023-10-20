@@ -2,7 +2,7 @@ import TeachersPart from "./TeachersPart";
 
 async function page() {
   return (
-    <div>
+    <div className="p-2">
       <TeachersPart />
     </div>
   );
