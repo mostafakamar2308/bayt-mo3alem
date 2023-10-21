@@ -14,17 +14,21 @@ export const grades = [
 ];
 
 export const subjects = [
-  { name: "اللغة العربية", value: "arabic" },
-  { name: "اللغة الإنجليزية", value: "english" },
-  { name: "اللغة الفرنسية", value: "french" }, // French
-  { name: "اللغة الألمانية", value: "german" }, // German
-  { name: "اللغة الإيطالية", value: "italian" }, // Italian
-  { name: "اللغة الإسبانية", value: "spanish" }, // Spanish
-  { name: "الجغرافيا", value: "geography" },
-  { name: "التاريخ", value: "history" },
-  { name: "الفلسفة", value: "philosophy" },
-  { name: "الرياضيات", value: "mathematics" }, // Mathematics
-  { name: "الكيمياء", value: "chemistry" },
-  { name: "الأحياء", value: "biology" },
-  { name: "الفيزياء", value: "physics" },
+  { name: "اللغة العربية", value: "arabic", colors: "bg-cyan-700" },
+  { name: "اللغة الإنجليزية", value: "english", colors: "!bg-violet-800" },
+  { name: "اللغة الفرنسية", value: "french", colors: "!bg-rose-500" }, // French
+  { name: "اللغة الألمانية", value: "german", colors: "!bg-pink-700" }, // German
+  { name: "اللغة الإيطالية", value: "italian", colors: "!bg-emerald-600" }, // Italian
+  {
+    name: "اللغة الإسبانية",
+    value: "spanish",
+    colors: "!bg-lime-400",
+  }, // Spanish
+  { name: "الجغرافيا", value: "geography", colors: "!bg-teal-900" },
+  { name: "التاريخ", value: "history", colors: "!bg-teal-900" },
+  { name: "الفلسفة", value: "philosophy", colors: "!bg-amber-800" },
+  { name: "الرياضيات", value: "mathematics", colors: "!bg-yellow-600" }, // Mathematics
+  { name: "الكيمياء", value: "chemistry", colors: "!bg-zinc-700" },
+  { name: "الأحياء", value: "biology", colors: "!bg-gray-700" },
+  { name: "الفيزياء", value: "physics", colors: "!bg-blue-500" },
 ];

@@ -40,9 +40,17 @@ const TeacherSchema = new mongoose.Schema({
     unique: true,
     required: [true, "Please provide a valid phone number"],
   },
-  examIds: {
-    type: [mongoose.Schema.Types.ObjectId],
-  },
+  examsCreated: [
+    {
+      grade: String,
+      exams: [
+        {
+          date: String,
+          id: mongoose.Schema.Types.ObjectId,
+        },
+      ],
+    },
+  ],
   studentIds: {
     type: [mongoose.Schema.Types.ObjectId],
   },

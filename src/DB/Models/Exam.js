@@ -31,6 +31,10 @@ const ExamSchema = new mongoose.Schema({
     type: Date,
     required: [true, "Please provide a beginning Date"],
   },
+  subject: {
+    type: String,
+    required: [true, "Please provide a subject"],
+  },
   teacherId: {
     type: mongoose.Schema.Types.ObjectId,
     required: [true, "Please provide Teacher Id"],

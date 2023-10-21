@@ -4,11 +4,11 @@ import jwt from "jsonwebtoken";
 import Student from "@/DB/Models/Student";
 import dbConnect from "@/DB/connect";
 import { redirect } from "next/navigation";
+import getStudentIdFromToken from "@/utils/getStudentFromToken";
 async function layout({ children }) {
-  const studentCookie = cookies().get("student-token");
-  const studentToken = jwt.verify(studentCookie.value, process.env.JWT_SECRET);
+  const { id } = getStudentIdFromToken();
   await dbConnect();
-  const student = await Student.findById(studentToken.id);
+  const student = await Student.findById(id);
   if (!student) {
     redirect("/student-login");
   }

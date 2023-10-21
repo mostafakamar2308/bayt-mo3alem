@@ -25,22 +25,52 @@ export async function POST(request) {
       exam = await exam.save();
     }
 
-    if (
-      !student.examsSubmitted
-        .map((exam) => exam.examId.toString())
-        .includes(exam._id.toString())
-    ) {
+    //check if there is a subject
+    const examSubjects = student.examsSubmitted.find(
+      (subject) => subject.subjectName === exam.subject
+    );
+    if (examSubjects) {
+      // check if the exam is there by its id
+      const prevExam = examSubjects.exams.find(
+        (currExam) => currExam.exam.examId.toString() === String(examID)
+      );
+      if (!prevExam) {
+        examSubjects.exams.push({
+          date: exam.from,
+          exam: {
+            examId: exam._id,
+            stats: {
+              timeSpent: 50,
+              rawScore: score,
+              percentileScore: percentageScore,
+            },
+            examAnswers: answers,
+          },
+        });
+      }
+    } else {
+      // No subject so create it from scratch
       student.examsSubmitted.push({
-        examId: exam._id,
-        stats: {
-          timeSpent: 50,
-          rawScore: score,
-          percentileScore: percentageScore,
-        },
-        examAnswers: answers,
+        subjectName: exam.subject,
+        exams: [
+          {
+            date: exam.from,
+            exam: {
+              examId: exam._id,
+              stats: {
+                timeSpent: 50,
+                rawScore: score,
+                percentileScore: percentageScore,
+              },
+              examAnswers: answers,
+            },
+          },
+        ],
       });
-      student = await student.save();
     }
+
+    student = await student.save();
+
     return NextResponse.json({ success: true, score, percentageScore });
   } catch (error) {
     return NextResponse.json({ error: error, success: false });

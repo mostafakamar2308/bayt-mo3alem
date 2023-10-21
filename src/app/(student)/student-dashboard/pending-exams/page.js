@@ -10,19 +10,24 @@ async function page() {
   const { id } = getStudentIdFromToken();
   const student = await Student.findOne({ _id: id });
   const teachers = await Teacher.find({ _id: { $in: student.teacherIds } });
-  const teachersExams = teachers.map((teacher) => teacher.examIds).flat();
+  const teachersExams = teachers
+    .map((teacher) =>
+      teacher.examsCreated
+        .find((group) => group.grade == student.grade)
+        .exams.map((exam) => exam.id)
+    )
+    .flat();
   const exams = await Exam.find({ _id: { $in: teachersExams } });
   const examsFormatted = exams.map((exam) => ({
     start: exam.from,
     end: exam.from,
     allDay: true,
-
+    subject: exam.subject,
     title: exam.examName,
     id: exam._id.toString(),
   }));
-  console.log(examsFormatted);
   return (
-    <div>
+    <div className="p-4">
       <Calendar exams={JSON.parse(JSON.stringify(examsFormatted))} />
     </div>
   );

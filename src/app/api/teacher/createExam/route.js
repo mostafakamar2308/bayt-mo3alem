@@ -13,6 +13,7 @@ export async function POST(request) {
     const token = cookies().get("token");
     const user = jwt.verify(token.value, process.env.JWT_SECRET);
     const teacherId = new mongoose.Types.ObjectId(user.id);
+    let teacher = await Teacher.findOne({ _id: teacherId });
     const newExam = await exam.create({
       examName,
       grade,
@@ -20,9 +21,22 @@ export async function POST(request) {
       Questions: questions,
       from,
       teacherId,
+      subject: teacher.subject,
     });
-    let teacher = await Teacher.findOne({ _id: teacherId });
-    teacher.examIds.push(newExam._id);
+    const group = teacher.examsCreated.filter((group) => group.grade === grade);
+    console.log(group);
+    console.log(from);
+    if (group.length > 0) {
+      teacher.examsCreated
+        .find((exam) => exam.grade === grade)
+        .exams.push({ date: from.toDateString(), id: newExam._id });
+    } else {
+      teacher.examsCreated.push({
+        grade: grade,
+        exams: [{ date: from, id: newExam._id }],
+      });
+    }
+    console.log(teacher);
     teacher = await teacher.save();
     return NextResponse.json({ newExam, success: true });
   } catch (error) {

@@ -3,8 +3,8 @@ import { useState } from "react";
 import SearchComponent from "./SearchPart";
 import TeacherCard from "./TeacherCard";
 
-function TeachersPart() {
-  const [teachersArr, setTeachersArr] = useState([]);
+function TeachersPart({ teachers }) {
+  const [teachersArr, setTeachersArr] = useState(teachers);
 
   return (
     <div>

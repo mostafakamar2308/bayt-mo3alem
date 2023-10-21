@@ -20,8 +20,9 @@ function SearchComponent({ setter }) {
     );
     const response = await request.json();
     if (response.success) {
-      setter(response.teachers);
+      setter([...response.teachers]);
     } else {
+      teachers = [];
       toastError("حدث خطأ ما، تأكد من اسم المدرس");
     }
   };

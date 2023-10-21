@@ -10,9 +10,11 @@ async function page({ params }) {
   );
   const exam = await Exam.findById(params.examID);
   const student = await Student.findById(studentData.id);
-  const studentExam = student.examsSubmitted.find(
-    (submittedExam) => submittedExam.examId == exam._id.toString()
-  );
+  const studentExam = student.examsSubmitted
+    .find((subject) => subject.subjectName === exam.subject)
+    .exams.find(
+      (submittedExam) => submittedExam.exam.examId == exam._id.toString()
+    );
   if (!studentExam) {
     redirect("/exam/" + params.examID);
   }
@@ -21,28 +23,36 @@ async function page({ params }) {
       <h3 className="flex items-center gap-1 mb-4 text-3xl">
         عاش يا {student.name.split(" ")[0]}
       </h3>
-      <div className="flex justify-between">
-        <div className="flex items-center gap-1 text-xl">
-          درجتك في امتحان: <h1>{exam.examName}</h1>
+      <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-1 text-xl">
+            درجتك في امتحان: <h1>{exam.examName}</h1>
+          </div>
+          <p>
+            امتحنته في يوم:{" "}
+            {new Date(studentExam.date).toLocaleDateString("ar-eg")}
+          </p>
         </div>
         <div
-          data-progress={studentExam.stats.rawScore}
+          data-progress={studentExam.exam.stats.rawScore}
           id="circle-grade"
           data-total-score={exam.totalScore}
           style={{
             "--progress": `${
-              (studentExam.stats.rawScore / exam.totalScore) * 360
+              (studentExam.exam.stats.rawScore / exam.totalScore) * 360
             }deg`,
           }}
         >
           {" "}
-          {studentExam.stats.rawScore} / {exam.totalScore}
+          {studentExam.exam.stats.rawScore} / {exam.totalScore}
         </div>
       </div>
+
       <h4 className="text-xl">إجاباتك في الامتحان:</h4>
       <div className="p-4">
         {exam.Questions.map((question, index) => {
-          const choosenAnswer = studentExam.examAnswers[index].choosenAnswer;
+          const choosenAnswer =
+            studentExam.exam.examAnswers[index].choosenAnswer;
           return (
             <div
               key={question._id}

@@ -14,7 +14,14 @@ function Calendar({ exams }) {
   return (
     <FullCalendar
       events={examsFormatted}
-      eventContent={(info) => <EventItem info={info} />}
+      eventContent={(info) => (
+        <EventItem
+          subject={
+            examsFormatted.find((exam) => exam.id === info.event.id).subject
+          }
+          info={info}
+        />
+      )}
       headerToolbar={{
         start: "today prev next",
         end: "dayGridMonth dayGridWeek",

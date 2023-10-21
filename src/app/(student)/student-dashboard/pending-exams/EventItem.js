@@ -1,8 +1,17 @@
-function EventItem({ info }) {
+import { subjects } from "@/constants";
+import { useMemo } from "react";
+
+function EventItem({ info, subject }) {
   const { event } = info;
 
-  console.log(event);
-  return <div>{event.title}</div>;
+  const color = useMemo(() => {
+    return subjects.find((currSubject) => currSubject.value === subject).colors;
+  }, [subject]);
+  return (
+    <div className={`py-4 text-right px-1 text-xl  ${color}`}>
+      {event.title}
+    </div>
+  );
 }
 
 export default EventItem;

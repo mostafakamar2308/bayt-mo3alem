@@ -2,6 +2,7 @@
 
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
+import { subjects } from "@/constants";
 
 const StudentSchema = new mongoose.Schema({
   name: {
@@ -37,15 +38,24 @@ const StudentSchema = new mongoose.Schema({
   },
   examsSubmitted: [
     {
-      examId: Schema.Types.ObjectId,
-      stats: {
-        timeSpent: Number,
-        rawScore: Number,
-        percentileScore: Number,
-      },
-      examAnswers: [{ questionHead: String, choosenAnswer: String }],
+      subjectName: String,
+      exams: [
+        {
+          date: String,
+          exam: {
+            examId: Schema.Types.ObjectId,
+            stats: {
+              timeSpent: Number,
+              rawScore: Number,
+              percentileScore: Number,
+            },
+            examAnswers: [{ questionHead: String, choosenAnswer: String }],
+          },
+        },
+      ],
     },
   ],
+
   teacherIds: {
     type: [Schema.Types.ObjectId],
   },
