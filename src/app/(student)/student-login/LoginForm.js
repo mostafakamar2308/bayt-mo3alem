@@ -19,7 +19,7 @@ function LoginForm() {
       const response = await req.json();
       console.log(response);
       if (response.success) {
-        Router.push("/student-dashboard");
+        Router.push("/student-dashboard/pending-exams");
         Router.refresh();
         toastSuccess("تم تسجيل الدخول بنجاح");
       } else {

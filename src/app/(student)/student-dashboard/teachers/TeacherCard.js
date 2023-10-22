@@ -2,16 +2,23 @@
 import Link from "next/link";
 import teacherImage from "@/Assets/teacher.png";
 import Image from "next/image";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import PayCard from "./PayCard";
 
 function TeacherCard({ teacher }) {
-  const handleSubsribe = async () => {
-    const request = await fetch("/api/subscribe-to-teacher", {
-      method: "PUT",
-      body: JSON.stringify({ teacherPhoneNumber: teacher.phoneNumber }),
-    });
-    const response = await request.json();
-    console.log(response);
+  const [cardView, setCardView] = useState(false);
+  const handleSubscribe = () => {
+    setCardView((prev) => !prev);
   };
+  // const handleSubscribe = async () => {
+  //   const request = await fetch("/api/subscribe-to-teacher", {
+  //     method: "PUT",
+  //     body: JSON.stringify({ teacherPhoneNumber: teacher.phoneNumber }),
+  //   });
+  //   const response = await request.json();
+  //   console.log(response);
+  // };
   return (
     <div className="flex items-center justify-center mt-4">
       <div className="flex w-4/5 gap-4 p-4 border rounded-md border-accent">
@@ -41,12 +48,20 @@ function TeacherCard({ teacher }) {
             سعر الامتحانات في الشهر: 20
           </h4>
           <button
-            onClick={handleSubsribe}
+            onClick={handleSubscribe}
             className="p-4 text-xl rounded-md shadow-md bg-orange"
           >
             اشترك مع المدرس
           </button>
         </div>
+        {cardView &&
+          createPortal(
+            <PayCard
+              teacherDetails={teacher}
+              closeThePopUp={() => setCardView(false)}
+            />,
+            document.body
+          )}
       </div>
     </div>
   );
