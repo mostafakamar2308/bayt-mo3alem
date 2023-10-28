@@ -45,7 +45,7 @@ function TeacherCard({ teacher }) {
             className="p-2 text-lg text-center border rounded-md border-primary"
             href={"/student-dashboard/teacher/" + teacher.id}
           >
-            سعر الامتحانات في الشهر: 20
+            سعر الامتحانات في السنة: 300 جنيه
           </h4>
           <button
             onClick={handleSubscribe}

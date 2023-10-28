@@ -51,9 +51,12 @@ const TeacherSchema = new mongoose.Schema({
       ],
     },
   ],
-  studentIds: {
-    type: [mongoose.Schema.Types.ObjectId],
-  },
+  studentIds: [
+    {
+      grade: String,
+      students: [mongoose.Schema.Types.ObjectId],
+    },
+  ],
 });
 TeacherSchema.pre("save", async function () {
   if (!this.isModified("password")) return;

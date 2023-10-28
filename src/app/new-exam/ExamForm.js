@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import NewQuestionForm from "./NewQuestionForm";
 import { grades } from "@/constants";
-import QuestionInView from "./QuestionInView";
+import MCQQuestionInView from "./MCQQuestionInView";
 import { DtPicker } from "react-calendar-datetime-picker";
 import "react-calendar-datetime-picker/dist/style.css";
 import { useRouter } from "next/navigation";
 import { toastError, toastSuccess } from "@/Components/Toast";
+import SegmentQuestionComponent from "./SegmentQuestionComponent";
+import SegmentQuestionInView from "./SegmentQuestionInView";
 
 function ExamForm() {
   const [examDetails, setExamDetails] = useState({
@@ -31,6 +33,7 @@ function ExamForm() {
     setExamDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const addNewQuestion = (question) => {
+    console.log(question);
     setExamDetails((prev) => ({
       ...prev,
       questions: [...prev.questions, question],
@@ -53,14 +56,20 @@ function ExamForm() {
   };
 
   const changeQuestionAnswer = (newQuestion) => {
+    console.log(newQuestion);
     setExamDetails((prev) => {
       const newQuestions = prev.questions.map((question) => {
-        if (question.questionHead == newQuestion.questionHead) {
-          return {
-            ...newQuestion,
-          };
+        console.log(question);
+        if (question.questionType !== "segment") {
+          return question.questionContent.questionHead ==
+            newQuestion.questionContent.questionHead
+            ? newQuestion
+            : question;
         } else {
-          return question;
+          return question.questionContent.segment ==
+            newQuestion.questionContent.segment
+            ? newQuestion
+            : question;
         }
       });
       return {
@@ -109,13 +118,21 @@ function ExamForm() {
         />
       </div>
       <div className="flex flex-col items-center gap-4 m-4">
-        {examDetails.questions.map((question) => (
-          <QuestionInView
-            changeQuestionAnswer={changeQuestionAnswer}
-            question={question}
-            key={question.questionHead}
-          />
-        ))}
+        {examDetails.questions.map((question, index) =>
+          question.questionType !== "segment" ? (
+            <MCQQuestionInView
+              changeQuestionAnswer={changeQuestionAnswer}
+              question={question}
+              key={question.questionHead}
+            />
+          ) : (
+            <SegmentQuestionInView
+              changeQuestionAnswer={changeQuestionAnswer}
+              question={question}
+              key={index}
+            />
+          )
+        )}
       </div>
       <button
         onClick={toggleNewQuestionPop}

@@ -24,12 +24,12 @@ export async function POST(request) {
       subject: teacher.subject,
     });
     const group = teacher.examsCreated.filter((group) => group.grade === grade);
-    console.log(group);
-    console.log(from);
+
     if (group.length > 0) {
       teacher.examsCreated
         .find((exam) => exam.grade === grade)
-        .exams.push({ date: from.toDateString(), id: newExam._id });
+        .exams.push({ date: from, id: newExam._id });
+      console.log("finished?");
     } else {
       teacher.examsCreated.push({
         grade: grade,

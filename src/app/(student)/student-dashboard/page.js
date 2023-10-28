@@ -1,5 +1,7 @@
+import { redirect } from "next/navigation";
+
 function page() {
-  return <div>page</div>;
+  redirect("/student-dashboard/pending-exams");
 }
 
 export default page;

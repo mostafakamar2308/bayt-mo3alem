@@ -1,127 +1,46 @@
 "use client";
 import { useState } from "react";
-const initialState = {
-  type: "MCQ",
-  questionHead: "",
-  answers: [{ correct: true, value: "" }],
-  explaination: "",
-};
+import MCQQuestionComponent from "./MCQQuestionComponent";
+import SegmentQuestionComponent from "./SegmentQuestionComponent";
 
 function NewQuestionForm({ addNewQuestion, closeModal }) {
-  const [questionDetails, setQuestionDetails] = useState(initialState);
-  const addAnswer = () => {
-    questionDetails.answers.length < 5
-      ? setQuestionDetails((prev) => ({
-          ...prev,
-          answers: [...prev.answers, { correct: false, value: "" }],
-        }))
-      : "";
-  };
-  const handleChange = (e) => {
-    setQuestionDetails((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  const changeCorrectAnswer = (e) => {
-    const id = e.target.id;
-    setQuestionDetails((prev) => ({
-      ...prev,
-      answers: prev.answers.map((answer, index) => {
-        if (index == id) {
-          return { ...answer, correct: true };
-        } else {
-          return { ...answer, correct: false };
-        }
-      }),
-    }));
-  };
-  const changeAnswerText = (e) => {
-    const id = e.target.id;
-    setQuestionDetails((prev) => ({
-      ...prev,
-      answers: prev.answers.map((answer, index) => {
-        if (index == id) {
-          console.log({ index, id });
-          return { ...answer, value: e.target.value };
-        } else {
-          return answer;
-        }
-      }),
-    }));
-  };
-  return (
-    <div className="fixed w-screen h-screen bg-[rgba(0,0,0,.5)]">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addNewQuestion(questionDetails);
-          closeModal();
-        }}
-        className="absolute flex flex-col w-1/2 gap-5 p-4 overflow-hidden text-xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg top-1/2 left-1/2 text-text "
-      >
-        <div className="">
-          <textarea
-            required
-            name="questionHead"
-            placeholder="رأس السؤال"
-            onChange={handleChange}
-            className="w-3/4 p-3 mb-4 bg-transparent border-b-2"
-          />
+  const [questionType, setQuestionType] = useState("vocabulary");
 
-          {questionDetails.answers.map((answer, index) => (
-            <div className="flex items-end gap-4 mb-2" key={index}>
-              <input
-                required
-                onChange={changeAnswerText}
-                id={index}
-                className="w-3/4 p-3 bg-transparent border-b-2"
-                placeholder="إجابة"
-              />
-              <input
-                onChange={changeCorrectAnswer}
-                type="radio"
-                className="w-6 h-6 "
-                id={index}
-                defaultChecked={answer.correct}
-                name="answer"
-              ></input>
-            </div>
-          ))}
-          <button
-            onClick={addAnswer}
-            className="w-1/2 p-3 border rounded-lg hover:bg-gray-400"
-          >
-            + أضف اجابة...{" "}
-          </button>
-          <textarea
-            name="explaination"
-            placeholder="تفسير الاجابة"
-            className="w-3/4 p-3 bg-transparent border-2 rounded-md"
+  const handleChange = (e) => {
+    setQuestionType(e.target.value);
+  };
+
+  return (
+    <div className="fixed w-screen h-screen flex justify-center items-center bg-[rgba(0,0,0,.5)]">
+      <div className="w-1/2 p-4 bg-white rounded-md ">
+        <div>
+          <select
+            value={questionType}
+            className="w-full mb-2 text-xl bg-transparent border rounded-md border-purple"
+            name="type"
             onChange={handleChange}
-            value={questionDetails.explaination}
-          ></textarea>
-        </div>
-        <div className="flex self-end gap-4">
-          <button
-            type="submit"
-            className="p-2 text-xl rounded-md bg-orange"
-            onSubmit={(e) => {
-              e.preventDefault();
-              addNewQuestion(questionDetails);
-              closeModal();
-            }}
           >
-            أضف السؤال
-          </button>
-          <button
-            onClick={closeModal}
-            className="p-2 text-xl text-white rounded-md bg-purple"
-          >
-            إلغاء
-          </button>
+            <option value="vocabulary">Vocabulary</option>
+            <option value="expression">Expression</option>
+            <option value="grammer">Grammer</option>
+            <option value="translation">Translation</option>
+            <option value="segment">القطعة</option>
+          </select>
+          {questionType !== "segment" ? (
+            <MCQQuestionComponent
+              questionType={questionType}
+              addNewQuestion={addNewQuestion}
+              closeModal={closeModal}
+            />
+          ) : (
+            <SegmentQuestionComponent
+              questionType={questionType}
+              addNewQuestion={addNewQuestion}
+              closeModal={closeModal}
+            />
+          )}
         </div>
-      </form>
+      </div>
     </div>
   );
 }

@@ -20,8 +20,23 @@ const ExamSchema = new mongoose.Schema({
   Questions: {
     type: [
       {
+        type: {
+          type: [
+            "vocabulary",
+            "expression",
+            "grammer",
+            "translation",
+            "segment",
+          ],
+        },
         questionHead: String,
-        answers: [{ correct: Boolean, value: String }],
+        answers: [
+          {
+            correct: Boolean,
+            value: String,
+            //, numberOfStudents: Number
+          },
+        ],
         explaination: String,
       },
     ],
