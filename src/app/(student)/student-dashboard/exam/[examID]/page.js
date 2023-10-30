@@ -51,35 +51,85 @@ async function page({ params }) {
       <h4 className="text-xl">إجاباتك في الامتحان:</h4>
       <div className="p-4">
         {exam.Questions.map((question, index) => {
-          const choosenAnswer =
-            studentExam.exam.examAnswers[index].choosenAnswer;
-          return (
-            <div
-              key={question._id}
-              className="p-4 mt-6 border rounded-md border-accent"
-            >
-              <h3 className="">{question.questionHead}</h3>
-              <div className="p-2 mb-2">
-                {question.answers.map((answer, index) => (
-                  <h5
-                    key={answer.value}
-                    className={`p-2 border mt-3 border-purple rounded-xl ${
-                      answer.correct ? " bg-green-600 text-white" : ""
-                    } ${
-                      choosenAnswer == answer.value && !answer.correct
-                        ? "!bg-red-500 text-white"
-                        : ""
-                    } `}
-                  >
-                    {answer.value}
-                  </h5>
-                ))}
+          if (question.questionType !== "segment") {
+            const studentChoosenAnswer = studentExam.exam.examAnswers.find(
+              (answer) =>
+                answer.questionHead === question.questionContent.questionHead
+            ).choosenAnswer;
+            return (
+              <div
+                key={question._id}
+                className="p-4 mt-6 border rounded-md border-accent"
+              >
+                <h3 className="">{question.questionContent.questionHead}</h3>
+                <div className="p-2 mb-2">
+                  {question.questionContent.answers.map((answer, index) => (
+                    <h5
+                      key={answer.value}
+                      className={`p-2 border mt-3 border-purple rounded-xl ${
+                        answer.correct ? " bg-green-600 text-white" : ""
+                      }
+                       ${
+                         studentChoosenAnswer == answer.value && !answer.correct
+                           ? "!bg-red-500 text-white"
+                           : ""
+                       }
+                      `}
+                    >
+                      {answer.value}
+                    </h5>
+                  ))}
+                </div>
+                {question.explaination && (
+                  <div>التفسير: {question.explaination}</div>
+                )}
               </div>
-              {question.explaination && (
-                <div>التفسير: {question.explaination}</div>
-              )}
-            </div>
-          );
+            );
+          } else {
+            const studentSegmentQuestion = studentExam.exam.examAnswers.find(
+              (answer) => answer.segment === question.questionContent.segment
+            );
+            return (
+              <div
+                key={index}
+                className="px-4 py-2 mt-4 mb-2 text-xl border-2 border-gray-400 rounded-md "
+              >
+                <p className="p-2 border rounded-md">
+                  {question.questionContent.segment}
+                </p>
+                {question.questionContent.questions.map((question, index) => {
+                  const studentChoosenAnswer =
+                    studentSegmentQuestion.answers.find(
+                      (answer) => answer.questionHead === question.questionHead
+                    ).choosenAnswer;
+                  return (
+                    <div key={index} className="mt-4">
+                      <h2 className="mb-1 text-2xl font-semibold">
+                        {question.questionHead}
+                      </h2>
+                      {question.answers.map((answer, index) => (
+                        <h5
+                          key={answer.value}
+                          className={`p-2 border mt-3 border-purple rounded-xl ${
+                            answer.correct ? " bg-green-600 text-white" : ""
+                          }
+                          ${
+                            studentChoosenAnswer == answer.value &&
+                            !answer.correct
+                              ? "!bg-red-500 text-white"
+                              : ""
+                          }
+                      `}
+                        >
+                          {answer.value}
+                        </h5>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          }
         })}
       </div>
     </div>

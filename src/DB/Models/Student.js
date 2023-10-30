@@ -49,7 +49,7 @@ const StudentSchema = new mongoose.Schema({
               rawScore: Number,
               percentileScore: Number,
             },
-            examAnswers: [{ questionHead: String, choosenAnswer: String }],
+            examAnswers: [Schema.Types.Mixed],
           },
         },
       ],
