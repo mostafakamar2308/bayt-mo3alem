@@ -18,28 +18,7 @@ const ExamSchema = new mongoose.Schema({
     required: [true, "Please provide total score"],
   },
   Questions: {
-    type: [
-      {
-        type: {
-          type: [
-            "vocabulary",
-            "expression",
-            "grammer",
-            "translation",
-            "segment",
-          ],
-        },
-        questionHead: String,
-        answers: [
-          {
-            correct: Boolean,
-            value: String,
-            //, numberOfStudents: Number
-          },
-        ],
-        explaination: String,
-      },
-    ],
+    type: [mongoose.Schema.Types.Mixed],
     required: [true, "You can't have exams without questions"],
   },
   from: {

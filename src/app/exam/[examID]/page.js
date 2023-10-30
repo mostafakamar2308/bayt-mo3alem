@@ -32,11 +32,22 @@ async function page({ params }) {
   const serializedExam = JSON.parse(JSON.stringify(exam));
   const serializedTeacher = JSON.parse(JSON.stringify(teacher));
   const questionWithoutAnswers = serializedExam.Questions.map((question) => {
-    const newAnswers = question.answers.map((answer) => {
-      answer.correct = null;
-      return answer;
-    });
-    return { ...question, answers: newAnswers, explaination: "" };
+    if (question.questionType !== "segment") {
+      const newAnswers = question.questionContent.answers.map((answer) => {
+        answer.correct = null;
+        return answer;
+      });
+      return {
+        ...question,
+        questionContent: {
+          ...question.questionContent,
+          answers: newAnswers,
+          explaination: "",
+        },
+      };
+    } else {
+      return question;
+    }
   });
 
   return (

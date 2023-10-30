@@ -25,7 +25,7 @@ export async function POST(request) {
       exam = await exam.save();
     }
 
-    //check if there is a subject
+    // check if there is a subject
     const examSubjects = student.examsSubmitted.find(
       (subject) => subject.subjectName === exam.subject
     );
@@ -80,33 +80,62 @@ export async function POST(request) {
 function evaluateAnswers(studentAnswers, examQuestionWithAnswers) {
   // Create a variable to keep track of the student's score
   let score = 0;
+  let examLength = 0;
 
   // Loop through each student answer
   for (let i = 0; i < studentAnswers.length; i++) {
     const studentAnswer = studentAnswers[i];
-    const questionHead = studentAnswer.questionHead;
-    const chosenAnswer = studentAnswer.choosenAnswer;
+    if (studentAnswer.segment) {
+      //this is a segment question
+      const segmentStudentAnswers = studentAnswer.answers;
+      const segmentQuestions = examQuestionWithAnswers.find(
+        (question) => question.questionContent.segment === studentAnswer.segment
+      ).questionContent.questions;
+      examLength += segmentQuestions.length;
+      for (let i = 0; i < segmentQuestions.length; i++) {
+        const questionHead = segmentQuestions[i].questionHead;
+        const chosenAnswer = segmentQuestions[i].answers.find(
+          (answer) => answer.correct
+        );
+        // Find the corresponding exam question with answers
+        const examQuestion = segmentStudentAnswers.find(
+          (question) => question.questionHead === questionHead
+        );
 
-    // Find the corresponding exam question with answers
-    const examQuestion = examQuestionWithAnswers.find(
-      (question) => question.questionHead === questionHead
-    );
+        // If the exam question is found, check the chosen answer
+        if (examQuestion) {
+          // If a correct answer exists and it matches the student's chosen answer, increment the score
+          if (examQuestion.choosenAnswer === chosenAnswer.value) {
+            score++;
+          }
+        }
+      }
+    } else {
+      examLength++;
+      const questionHead = studentAnswer.questionHead;
+      const chosenAnswer = studentAnswer.choosenAnswer;
 
-    // If the exam question is found, check the chosen answer
-    if (examQuestion) {
-      const correctAnswer = examQuestion.answers.find(
-        (answer) => answer.correct
+      // Find the corresponding exam question with answers
+      const examQuestion = examQuestionWithAnswers.find(
+        (question) => question.questionContent.questionHead === questionHead
       );
 
-      // If a correct answer exists and it matches the student's chosen answer, increment the score
-      if (correctAnswer && correctAnswer.value === chosenAnswer) {
-        score++;
+      // If the exam question is found, check the chosen answer
+      if (examQuestion) {
+        const correctAnswer = examQuestion.questionContent.answers.find(
+          (answer) => answer.correct
+        );
+
+        // If a correct answer exists and it matches the student's chosen answer, increment the score
+        if (correctAnswer && correctAnswer.value === chosenAnswer) {
+          score++;
+        }
       }
     }
   }
 
   // Calculate the percentage score
-  const percentageScore = (score / examQuestionWithAnswers.length) * 100;
+  const percentageScore = (score / examLength) * 100;
 
   return {
     score: score,
