@@ -1,6 +1,4 @@
-import { cookies } from "next/headers";
 import Link from "next/link";
-import jwt from "jsonwebtoken";
 import Student from "@/DB/Models/Student";
 import dbConnect from "@/DB/connect";
 import { redirect } from "next/navigation";
@@ -14,16 +12,14 @@ async function layout({ children }) {
   }
   return (
     <section className="flex min-h-screen">
-      <aside className="p-2 px-4 border-l border-black min-w-fit">
+      <aside className="p-2 px-4 text-white border-r border-black min-w-fit bg-purple">
         <h1 className="text-3xl">بيت المعلم</h1>
         <nav className="flex flex-col gap-4 mt-4 text-2xl">
-          <Link href={"/student-dashboard/pending-exams"}>
-            امتحاناتي القادمة
-          </Link>
+          <Link href={"/student-dashboard/pending-exams"}>Next Exams </Link>
           <Link href={"/student-dashboard/previous-exams"}>
-            امتحاناتي السابقة
+            Previous Exams{" "}
           </Link>
-          <Link href={"/student-dashboard/teachers"}>المدرسين</Link>
+          <Link href={"/student-dashboard/teachers"}>Teachers</Link>
         </nav>
       </aside>
       <section className="grow-[11]">{children}</section>

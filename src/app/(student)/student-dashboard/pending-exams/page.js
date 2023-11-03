@@ -4,6 +4,7 @@ import getStudentIdFromToken from "@/utils/getStudentFromToken";
 import Student from "@/DB/Models/Student";
 import Teacher from "@/DB/Models/Teacher";
 import Exam from "@/DB/Models/Exam";
+import { Suspense } from "react";
 
 async function page() {
   await dbConnect();
@@ -28,7 +29,9 @@ async function page() {
   }));
   return (
     <div className="p-4">
-      <Calendar exams={JSON.parse(JSON.stringify(examsFormatted))} />
+      <Suspense fallback={<h5>Loading Calendar ...</h5>}>
+        <Calendar exams={JSON.parse(JSON.stringify(examsFormatted))} />
+      </Suspense>
     </div>
   );
 }

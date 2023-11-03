@@ -3,7 +3,7 @@ import React from "react";
 
 function layout({ children }) {
   return (
-    <div className="flex min-h-screen gap-2">
+    <div className="flex min-h-screen gap-2" dir="ltr">
       <Sidebar />
       <div className="grow-[10]">{children}</div>
     </div>

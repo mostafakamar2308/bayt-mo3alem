@@ -18,11 +18,15 @@ export async function POST(request) {
         message: "student not verified",
       });
     }
-    const { score, percentageScore } = evaluateAnswers(answers, exam.Questions);
+    const { score, percentageScore, examQuestionWithAnswers } = evaluateAnswers(
+      answers,
+      exam.Questions
+    );
+    exam.Questions = examQuestionWithAnswers;
+    console.log("exam evaluated successfully");
     const isStudentAttemptPrev = exam.studentIds.includes(student._id);
     if (!isStudentAttemptPrev) {
       exam.studentIds.push(student._id);
-      exam = await exam.save();
     }
 
     // check if there is a subject
@@ -68,10 +72,37 @@ export async function POST(request) {
         ],
       });
     }
-
-    student = await student.save();
-
-    return NextResponse.json({ success: true, score, percentageScore });
+    if (exam.stats.highestScore[0].score < score) {
+      exam.stats.highestScore[0].score = score;
+      exam.stats.highestScore[0].owners = [student._id];
+    } else if (exam.stats.highestScore[0].score == score) {
+      exam.stats.highestScore[0].owners.push(student._id);
+    }
+    if (exam.stats.lowestScore[0].score == 0) {
+      exam.stats.lowestScore[0].score = score;
+    } else {
+      if (exam.stats.lowestScore[0].score > score) {
+        exam.stats.lowestScore[0].score = score;
+        exam.stats.lowestScore[0].owners = [student._id];
+      } else if (exam.stats.lowestScore[0].score == score) {
+        exam.stats.lowestScore[0].owners.push(student._id);
+      }
+    }
+    const accumulativeAverageScore =
+      (score + exam.stats.averageScore * exam.stats.scores.length) /
+      (exam.stats.scores.length + 1);
+    console.log(accumulativeAverageScore);
+    exam.stats.averageScore = accumulativeAverageScore;
+    exam.stats.scores.push(score);
+    exam.markModified("Questions");
+    await exam.save();
+    await student.save();
+    return NextResponse.json({
+      success: true,
+      score,
+      percentageScore,
+      examQuestionWithAnswers,
+    });
   } catch (error) {
     return NextResponse.json({ error: error, success: false });
   }
@@ -81,12 +112,13 @@ function evaluateAnswers(studentAnswers, examQuestionWithAnswers) {
   // Create a variable to keep track of the student's score
   let score = 0;
   let examLength = 0;
-
+  console.log("start evaluation");
   // Loop through each student answer
   for (let i = 0; i < studentAnswers.length; i++) {
     const studentAnswer = studentAnswers[i];
     if (studentAnswer.segment) {
       //this is a segment question
+      console.log("segment Question Evaluation");
       const segmentStudentAnswers = studentAnswer.answers;
       const segmentQuestions = examQuestionWithAnswers.find(
         (question) => question.questionContent.segment === studentAnswer.segment
@@ -97,6 +129,7 @@ function evaluateAnswers(studentAnswers, examQuestionWithAnswers) {
         const chosenAnswer = segmentQuestions[i].answers.find(
           (answer) => answer.correct
         );
+
         // Find the corresponding exam question with answers
         const examQuestion = segmentStudentAnswers.find(
           (question) => question.questionHead === questionHead
@@ -107,10 +140,21 @@ function evaluateAnswers(studentAnswers, examQuestionWithAnswers) {
           // If a correct answer exists and it matches the student's chosen answer, increment the score
           if (examQuestion.choosenAnswer === chosenAnswer.value) {
             score++;
+            segmentQuestions[i].stats.correctNo++;
+            chosenAnswer.stats.choosen++;
+          } else {
+            console.log("segment question not correct");
+            console.log(examQuestion.choosenAnswer);
+            const choosenAnswer = segmentQuestions[i].answers.find(
+              (answer) => examQuestion.choosenAnswer === answer.value
+            );
+            choosenAnswer.stats.choosen++;
+            console.log(choosenAnswer);
           }
         }
       }
     } else {
+      console.log("mcq question Evaluation");
       examLength++;
       const questionHead = studentAnswer.questionHead;
       const chosenAnswer = studentAnswer.choosenAnswer;
@@ -129,6 +173,16 @@ function evaluateAnswers(studentAnswers, examQuestionWithAnswers) {
         // If a correct answer exists and it matches the student's chosen answer, increment the score
         if (correctAnswer && correctAnswer.value === chosenAnswer) {
           score++;
+          correctAnswer.stats.choosen++;
+          examQuestion.questionContent.stats.correctNo++;
+        } else {
+          console.log("wrong mcq answer");
+          console.log(chosenAnswer);
+          const choosenAnswer = examQuestion.questionContent.answers.find(
+            (answer) => chosenAnswer === answer.value
+          );
+          choosenAnswer.stats.choosen++;
+          console.log("wrong mcq question Evaluation done success");
         }
       }
     }
@@ -140,5 +194,6 @@ function evaluateAnswers(studentAnswers, examQuestionWithAnswers) {
   return {
     score: score,
     percentageScore: percentageScore,
+    examQuestionWithAnswers,
   };
 }

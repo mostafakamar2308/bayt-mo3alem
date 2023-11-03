@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center h-full ">
+    <div className="flex items-center justify-center h-screen ">
       <Image src={register1} alt="Image 1" />
       <div className="w-[40%] p-8 h-fit border text-center bg-white rounded-2xl">
         <h2 className="text-2xl font-bold">السلام عليكم</h2>

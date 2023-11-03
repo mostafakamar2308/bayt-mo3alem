@@ -9,20 +9,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        orange: "#fec786",
+        offWhite: "#F5F3FA",
+        trueGray: "#B7A9C6",
+        lightGray: "#9D98AD",
+        lightBlue: "#3415F4",
+        purple: "#6B53C6",
+        orange: "#F9562C",
+        text: "#765359",
+        gold: "#ffd200",
+        //----------------------------------------------------------------
         primary: "#3C7240",
         secondary: "#D0D3CF",
         background: "#E7FEDC",
         accent: "#5D5874",
-        lightBlue: "#6aa2b8",
         darkBlue: "#0064a4",
-        gold: "#ffd200",
-        lightGray: "#c6beb5",
-        darkGray: "#555759",
-        purple: "#1b3d6d",
-        trueGray: "#ecedf0",
-        offWhite: "#E7FEDC",
-        text: "#0C2301",
+        //----------------------------------------------------------------
       },
       backgroundImage: {},
     },

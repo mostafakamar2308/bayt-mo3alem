@@ -48,6 +48,8 @@ const StudentSchema = new mongoose.Schema({
               timeSpent: Number,
               rawScore: Number,
               percentileScore: Number,
+              levelAtSections: [Schema.Types.Mixed],
+              mostWeakSection: String,
             },
             examAnswers: [Schema.Types.Mixed],
           },

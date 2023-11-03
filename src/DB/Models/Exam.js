@@ -42,6 +42,16 @@ const ExamSchema = new mongoose.Schema({
       averagePercentile: Number,
       highestScore: Number,
       gradeDistribution: [{ grade: String, percentage: Number }],
+      times: [Number],
+      averageTimes: Number,
+      scores: [Number],
+      averageScore: Number,
+      highestScore: [
+        { owners: [mongoose.Schema.Types.ObjectId], score: Number },
+      ],
+      lowestScore: [
+        { owners: [mongoose.Schema.Types.ObjectId], score: Number },
+      ],
     },
   },
 });

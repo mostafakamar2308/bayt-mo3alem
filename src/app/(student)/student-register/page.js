@@ -5,7 +5,7 @@ import RegisterForm from "./RegisterForm";
 
 function page() {
   return (
-    <div className="flex flex-col-reverse items-center justify-center h-full p-4 lg:flex-row lg:flex-nowrap ">
+    <div className="flex flex-col-reverse items-center justify-center h-screen p-4 lg:flex-row lg:flex-nowrap ">
       <Image src={img} alt="Image 1" className="lg:w-1/2" />
       <div className="lg:w-[40%] w-full p-8 h-fit border text-center bg-white rounded-2xl">
         <h2 className="text-2xl font-bold">السلام عليكم</h2>

@@ -12,11 +12,12 @@ function SegmentQuestionComponent({
     questions: [
       {
         questionHead: "",
+        stats: { correctNo: 0 },
         answers: [
-          { correct: true, value: "" },
-          { correct: false, value: "" },
-          { correct: false, value: "" },
-          { correct: false, value: "" },
+          { correct: true, value: "", stats: { choosen: 0 } },
+          { correct: false, value: "", stats: { choosen: 0 } },
+          { correct: false, value: "", stats: { choosen: 0 } },
+          { correct: false, value: "", stats: { choosen: 0 } },
         ],
       },
     ],
@@ -87,11 +88,12 @@ function SegmentQuestionComponent({
         ...prev.questions,
         {
           questionHead: "",
+          stats: { correctNo: 0 },
           answers: [
-            { correct: true, value: "" },
-            { correct: false, value: "" },
-            { correct: false, value: "" },
-            { correct: false, value: "" },
+            { correct: true, value: "", stats: { choosen: 0 } },
+            { correct: false, value: "", stats: { choosen: 0 } },
+            { correct: false, value: "", stats: { choosen: 0 } },
+            { correct: false, value: "", stats: { choosen: 0 } },
           ],
         },
       ],

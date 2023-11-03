@@ -6,11 +6,12 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
   const [questionDetails, setQuestionDetails] = useState({
     questionHead: "",
     explaination: "",
+    stats: { correctNo: 0 },
     answers: [
-      { correct: true, value: "" },
-      { correct: false, value: "" },
-      { correct: false, value: "" },
-      { correct: false, value: "" },
+      { correct: true, value: "", stats: { choosen: 0 } },
+      { correct: false, value: "", stats: { choosen: 0 } },
+      { correct: false, value: "", stats: { choosen: 0 } },
+      { correct: false, value: "", stats: { choosen: 0 } },
     ],
   });
   const changeQuestionHeadORExplain = (e) => {

@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 export async function POST(request) {
-  const { examName, grade, questions, from } = await request.json();
+  const { examName, grade, questions, from, stats } = await request.json();
   try {
     await dbConnect();
     const token = cookies().get("token");
@@ -21,6 +21,7 @@ export async function POST(request) {
       Questions: questions,
       from,
       teacherId,
+      stats,
       subject: teacher.subject,
     });
     const group = teacher.examsCreated.filter((group) => group.grade === grade);

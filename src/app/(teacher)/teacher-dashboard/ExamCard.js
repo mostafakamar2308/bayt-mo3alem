@@ -7,7 +7,7 @@ async function ExamCard({ examId }) {
     return (
       <Link
         href={"/teacher-dashboard/exam/" + examId}
-        className="flex items-center justify-between w-1/2 p-4 border rounded-lg shadow-sm border-accent shadow-accent"
+        className="flex items-center justify-between w-1/2 p-4 mt-3 border rounded-lg shadow-md border-accent shadow-accent"
       >
         <div className="">
           <h2 className="text-xl">{examData.examName}</h2>

@@ -15,7 +15,7 @@ export default async function Home() {
       <Hero />
       <hr className="text-gray-600 bg-gray-600 border-gray-600 "></hr>
       <section className="p-4 text-center">
-        <h3 className="mb-2 text-3xl">كيف يفيدك بيت المعلم؟</h3>
+        <h3 className="mb-2 text-3xl">How it works?</h3>
 
         <div className="flex flex-wrap gap-4 lg:flex-nowrap">
           <Content />

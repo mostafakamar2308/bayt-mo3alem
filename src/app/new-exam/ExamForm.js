@@ -18,6 +18,14 @@ function ExamForm() {
     examName: "",
     grade: "grade 1",
     questions: [],
+    stats: {
+      times: [],
+      averageTimes: 0,
+      scores: [],
+      averageScore: 0,
+      highestScore: [{ owners: [], score: 0 }],
+      lowestScore: [{ owners: [], score: 0 }],
+    },
     from: "",
   });
   const Router = useRouter();
@@ -136,10 +144,10 @@ function ExamForm() {
       </div>
       <button
         onClick={toggleNewQuestionPop}
-        className="fixed flex gap-4 p-2 rounded-full bg-secondary w-44 bottom-10 left-10"
+        className="fixed flex gap-2 p-2 px-4 rounded-full bg-secondary bottom-10 right-10"
       >
         <Image src={plus} alt="add new question" width={28} />
-        أضف سؤال جديد
+        Create New Question{" "}
       </button>
       {isMounted && newQuestionModal
         ? createPortal(
@@ -151,15 +159,12 @@ function ExamForm() {
           )
         : null}
       {examDetails.questions.length > 0 && (
-        <div className="flex gap-4 text-xl">
-          <button className="px-4 py-2 border-2 border-gray-400 rounded-lg hover:shadow-md">
-            عرض
-          </button>
+        <div className="flex justify-end">
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 font-bold border-2 border-gray-400 rounded-lg bg-orange hover:shadow-md"
+            className="px-4 py-2 text-xl font-bold border-2 border-gray-400 rounded-lg bg-orange hover:shadow-md"
           >
-            حفظ ونشر
+            Puplish Exam{" "}
           </button>
         </div>
       )}
