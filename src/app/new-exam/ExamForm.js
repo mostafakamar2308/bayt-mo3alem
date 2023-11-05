@@ -57,7 +57,7 @@ function ExamForm() {
     console.log(response);
     if (response && response.success) {
       toastSuccess("تم نشر الامتحان بنجاح");
-      Router.push("/teacher-dashboard");
+      Router.push("/teacher-dashboard?exam=" + response.newExam._id);
     } else {
       toastError("حدث خطأ حاول مرة أخري");
     }

@@ -3,15 +3,17 @@ import { redirect } from "next/navigation";
 import ExamCard from "./ExamCard";
 import Link from "next/link";
 import { grades } from "@/constants";
+import ExamSharerPopUp from "./ExamSharerPopUp";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-async function page() {
+async function page({ searchParams }) {
   const details = await getTeacherDetails();
   if (!details) {
     redirect("/teacher-login");
   }
+  const examURLCallback = searchParams.exam;
   return (
     <div className="p-4 py-8">
       <h2 className="pb-4 text-3xl border-b-2 w-fit border-accent">
@@ -35,6 +37,7 @@ async function page() {
           );
         })}
       </div>
+      {examURLCallback && <ExamSharerPopUp examID={examURLCallback} />}
       <Link
         href={"/new-exam"}
         className="fixed flex items-center gap-2 p-4 text-white duration-300 rounded-md bottom-10 right-5 bg-accent hover:bg-lightGray"

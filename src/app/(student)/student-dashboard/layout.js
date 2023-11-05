@@ -19,7 +19,6 @@ async function layout({ children }) {
           <Link href={"/student-dashboard/previous-exams"}>
             Previous Exams{" "}
           </Link>
-          <Link href={"/student-dashboard/teachers"}>Teachers</Link>
         </nav>
       </aside>
       <section className="grow-[11]">{children}</section>

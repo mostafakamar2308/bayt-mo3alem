@@ -26,7 +26,7 @@ function RegisterationForm() {
     const response = await req.json();
     if (response.success) {
       setRequestState("Success");
-      Router.push("/teacher-dashboard");
+      Router.push("/new-exam");
       Router.refresh();
     } else {
       setRequestState("Failed");

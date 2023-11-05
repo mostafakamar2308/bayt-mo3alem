@@ -38,7 +38,11 @@ export async function POST(request) {
       });
     }
     console.log(teacher);
+
     teacher = await teacher.save();
+    cookies().set("newExamCallback", newExam._id.toString(), {
+      expires: Date.now() + 24 * 60 * 60 * 1000,
+    });
     return NextResponse.json({ newExam, success: true });
   } catch (error) {
     return NextResponse.json({ error, success: false });
