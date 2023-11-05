@@ -100,9 +100,10 @@ function SegmentQuestionComponent({
     }));
   };
   return (
-    <div dir="ltr" className="overflow-auto text-lg max-h-[70vh] p-2">
+    <div className="overflow-auto flex flex-col text-lg max-h-[70vh] p-2">
       <textarea
         name="segment"
+        placeholder="Segment"
         value={segmentDetails.segment}
         className="w-full p-3 mb-3 text-xl text-left bg-transparent border border-b-2 rounded-md h-60 "
         onChange={handleChangeSement}
@@ -149,7 +150,12 @@ function SegmentQuestionComponent({
         ))}
       </div>
 
-      <button onClick={addQuestion}>Add Question</button>
+      <button
+        onClick={addQuestion}
+        className="self-end p-2 my-4 text-white rounded-md bg-text"
+      >
+        Add Question
+      </button>
       <div className="flex self-end gap-4">
         <button
           className="p-2 text-xl rounded-md bg-orange"
@@ -159,13 +165,13 @@ function SegmentQuestionComponent({
             closeModal();
           }}
         >
-          أضف القطعة
+          Add Segment Questions{" "}
         </button>
         <button
           onClick={closeModal}
           className="p-2 text-xl text-white rounded-md bg-purple"
         >
-          إلغاء
+          Cancel
         </button>
       </div>
     </div>

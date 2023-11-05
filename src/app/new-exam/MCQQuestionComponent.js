@@ -53,7 +53,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
       <textarea
         required
         name="questionHead"
-        placeholder="رأس السؤال"
+        placeholder="Question Head"
         onChange={changeQuestionHeadORExplain}
         className="w-3/4 p-3 mb-4 bg-transparent border-b-2"
       />
@@ -64,7 +64,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
             required
             onChange={changeAnswerText}
             className="w-3/4 p-3 bg-transparent border-b-2"
-            placeholder="إجابة"
+            placeholder="Answer"
           />
           <input
             onChange={changeCorrectAnswer}
@@ -78,12 +78,18 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
       ))}
       <textarea
         name="explaination"
-        placeholder="تفسير الاجابة"
+        placeholder="Explaination"
         className="w-3/4 p-3 bg-transparent border-2 rounded-md"
         onChange={changeQuestionHeadORExplain}
         value={questionDetails.explaination}
       ></textarea>
-      <div className="flex self-end gap-4">
+      <div className="flex justify-end gap-4">
+        <button
+          onClick={closeModal}
+          className="p-2 text-xl text-white rounded-md bg-purple"
+        >
+          Cancel
+        </button>
         <button
           className="p-2 text-xl rounded-md bg-orange"
           onClick={(e) => {
@@ -92,13 +98,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
             closeModal();
           }}
         >
-          أضف السؤال
-        </button>
-        <button
-          onClick={closeModal}
-          className="p-2 text-xl text-white rounded-md bg-purple"
-        >
-          إلغاء
+          Add Question{" "}
         </button>
       </div>
     </div>

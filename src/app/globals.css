@@ -1,17 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Blaka&family=Changa:wght@700&family=Scheherazade+New:wght@400;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-  font-family: "Blaka", cursive;
-}
-h3 {
-  font-family: "Changa", sans-serif;
-}
-* {
-  font-family: "Scheherazade New", serif;
-}
 .react-calendar-datetime-picker {
   flex-grow: 1;
 }

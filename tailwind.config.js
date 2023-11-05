@@ -8,6 +8,10 @@ module.exports = {
   safelist: [{ pattern: /bg-/ }],
   theme: {
     extend: {
+      fontFamily: {
+        yantramanav: ["var(--font-yantramanav)"],
+        archivo_black: ["var(--font-archivo_black)"],
+      },
       colors: {
         offWhite: "#F5F3FA",
         trueGray: "#B7A9C6",

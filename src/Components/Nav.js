@@ -4,7 +4,7 @@ async function Nav() {
   return (
     <header className="flex justify-between p-4">
       <Link href={"/"}>
-        <h1 className="text-3xl font-bold">Examify</h1>
+        <h1 className="text-3xl font-bold text-orange">Word Thread</h1>
       </Link>
       <nav className="flex items-center gap-4 text-lg">
         <Link
@@ -16,7 +16,7 @@ async function Nav() {
 
         <Link
           href="/#register"
-          className="px-3 py-2 font-bold text-white rounded-md bg-accent"
+          className="px-3 py-2 font-bold text-white rounded-md bg-purple"
         >
           Register
         </Link>

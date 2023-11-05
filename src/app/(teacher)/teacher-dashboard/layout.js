@@ -3,9 +3,9 @@ import React from "react";
 
 function layout({ children }) {
   return (
-    <div className="flex min-h-screen gap-2" dir="ltr">
+    <div className="flex gap-2" dir="ltr">
       <Sidebar />
-      <div className="grow-[10]">{children}</div>
+      <div className="grow-[8] min-h-screen">{children}</div>
     </div>
   );
 }

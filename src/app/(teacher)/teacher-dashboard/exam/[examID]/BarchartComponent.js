@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-function Barchart({ data, dataKey }) {
+function BarchartComponent({ data, dataKey }) {
   return (
     <ResponsiveContainer width={"100%"} height={400}>
       <BarChart data={data}>
@@ -22,4 +22,4 @@ function Barchart({ data, dataKey }) {
   );
 }
 
-export default Barchart;
+export default BarchartComponent;

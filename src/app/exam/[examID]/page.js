@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import dbConnect from "@/DB/connect";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import formatExam from "@/utils/formatExam";
 
 async function page({ params }) {
   const { examID } = params;
@@ -31,30 +32,14 @@ async function page({ params }) {
   const teacher = await Teacher.findById(exam.teacherId);
   const serializedExam = JSON.parse(JSON.stringify(exam));
   const serializedTeacher = JSON.parse(JSON.stringify(teacher));
-  const questionWithoutAnswers = serializedExam.Questions.map((question) => {
-    if (question.questionType !== "segment") {
-      const newAnswers = question.questionContent.answers.map((answer) => {
-        answer.correct = null;
-        return answer;
-      });
-      return {
-        ...question,
-        questionContent: {
-          ...question.questionContent,
-          answers: newAnswers,
-          explaination: "",
-        },
-      };
-    } else {
-      return question;
-    }
-  });
+  const formattedQuestions = formatExam(serializedExam);
 
   return (
     <MultiExamForm
-      exam={serializedExam}
+      examID={exam._id.toString()}
+      examName={exam.examName}
       teacher={serializedTeacher}
-      questions={questionWithoutAnswers}
+      questions={formattedQuestions}
     />
   );
 }

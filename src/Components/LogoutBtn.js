@@ -1,16 +1,23 @@
 "use client";
 
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import logout from "@/Assets/sign-out.png";
+import Image from "next/image";
 
 function LogoutBtn() {
   const Router = useRouter();
-  const handleLogout = function () {
-    document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    Router.refresh();
+  const handleLogout = () => {
+    Cookies.remove("token");
+    Router.push("/teacher-login");
   };
   return (
-    <button onClick={handleLogout} className="p-4 py-2 text-white bg-purple">
-      تسجيل الخروج
+    <button
+      onClick={handleLogout}
+      className="flex items-center gap-2 p-4 py-2 text-white border border-white rounded-md"
+    >
+      <Image src={logout} alt="log out icon" width={30} />
+      Log out{" "}
     </button>
   );
 }

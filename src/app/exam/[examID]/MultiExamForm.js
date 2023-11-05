@@ -6,7 +6,7 @@ import { useState } from "react";
 import MCQquestion from "./MCQquestion";
 import SegmentQuestion from "./SegmentQuestion";
 
-function MultiExamForm({ exam, questions, teacher }) {
+function MultiExamForm({ examName, examID, questions, teacher }) {
   const [step, setMultiStep] = useState("start");
   const [answers, setAnswer] = useState([]);
   const Router = useRouter();
@@ -86,12 +86,12 @@ function MultiExamForm({ exam, questions, teacher }) {
   const SendAnswers = async () => {
     const request = await fetch("/api/attempt-exam", {
       method: "POST",
-      body: JSON.stringify({ answers, examID: exam._id }),
+      body: JSON.stringify({ answers, examID }),
     });
     const response = await request.json();
     if (response.success) {
       toastSuccess("تم تسليم الامتحان بنجاح");
-      Router.push("/student-dashboard/exam/" + exam._id);
+      Router.push("/student-dashboard/exam/" + examID);
     } else {
       toastError("حدث خطأ حاول مجددا");
     }
@@ -105,7 +105,7 @@ function MultiExamForm({ exam, questions, teacher }) {
   if (step === "start") {
     return (
       <Beginning
-        examName={exam.examName}
+        examName={examName}
         teacherName={teacher.name}
         goToNextQuestion={startExam}
       />
@@ -172,7 +172,7 @@ function MultiExamForm({ exam, questions, teacher }) {
   } else if (step >= questions.length) {
     return (
       <Ending
-        examName={exam.examName}
+        examName={examName}
         goToStep={goToStep}
         answersLength={answers.length}
         questionsLength={questions.length}

@@ -24,7 +24,7 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
             <option value="expression">Expression</option>
             <option value="grammer">Grammer</option>
             <option value="translation">Translation</option>
-            <option value="segment">القطعة</option>
+            <option value="segment">Segment</option>
           </select>
           {questionType !== "segment" ? (
             <MCQQuestionComponent

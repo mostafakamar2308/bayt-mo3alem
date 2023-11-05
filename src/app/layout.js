@@ -1,6 +1,7 @@
 import TooltipContainer from "./TooltipContainer";
-import "./globals.css";
 import { ToastContainer } from "react-toastify";
+import "./globals.css";
+import { yantramanav } from "./fonts";
 
 export const metadata = {
   title: "بيت المعلم",
@@ -9,7 +10,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth ">
+    <html lang="en" className={`${yantramanav.variable} scroll-smooth  `}>
       <body className="flex flex-col min-h-screen bg-offWhite text-text">
         <ToastContainer />
         <TooltipContainer />

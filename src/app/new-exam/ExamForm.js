@@ -101,7 +101,7 @@ function ExamForm() {
         <input
           autoFocus
           className="px-4 py-2 text-lg bg-transparent border-b-2 border-gray-400 focus:outline-none"
-          placeholder="أدخل اسم الامتحان"
+          placeholder="Exam Name"
           name="examName"
           onChange={changeExamDetails}
         />
@@ -120,7 +120,7 @@ function ExamForm() {
         <DtPicker
           showTimeInput
           onChange={handleChangeCalendar}
-          placeholder="تاريخ بداية الامتحان"
+          placeholder="Date:"
           fromLabel="من يوم:"
           inputClass=" bg-transparent "
         />
