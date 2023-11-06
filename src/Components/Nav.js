@@ -2,21 +2,23 @@ import Link from "next/link";
 
 async function Nav() {
   return (
-    <header className="flex justify-between p-4">
+    <header className="flex items-center justify-between p-4">
       <Link href={"/"}>
-        <h1 className="text-3xl font-bold text-orange">Word Thread</h1>
+        <h1 className="text-xl font-bold lg:text-3xl text-orange">
+          Word Thread
+        </h1>
       </Link>
-      <nav className="flex items-center gap-4 text-lg">
+      <nav className="flex items-center gap-2 text-lg lg:gap-4">
         <Link
           href="https://t.me/Madareg_barmja"
-          className="p-2 border border-gray-700 rounded-md"
+          className="p-1 border border-gray-700 rounded-md lg:p-2"
         >
           Contact Us{" "}
         </Link>
 
         <Link
-          href="/#register"
-          className="px-3 py-2 font-bold text-white rounded-md bg-purple"
+          href="/teacher-register"
+          className="p-2 font-bold text-white rounded-md lg:py-2 lg:px-3 bg-purple"
         >
           Register
         </Link>

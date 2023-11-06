@@ -33,20 +33,23 @@ function RegisterationForm() {
     }
   };
   return (
-    <form onSubmit={handleRegister} className="flex flex-col gap-2 text-white">
+    <form
+      onSubmit={handleRegister}
+      className="flex flex-col max-w-full gap-2 text-white"
+    >
       <input
         name="email"
         placeholder="mrMohamed@gmail.com"
         type="email"
         value={formDetails.email}
         onChange={handleChange}
-        className="p-2 text-xl border-2 rounded-md"
+        className="w-full p-2 text-xl text-white border-2 rounded-md"
       />
       <input
         name="phoneNumber"
         placeholder="01234567891"
         type="tel"
-        className="p-2 text-xl border-2 rounded-md"
+        className="w-full p-2 text-xl text-white border-2 rounded-md"
         value={formDetails.phoneNumber}
         onChange={handleChange}
       />
@@ -59,13 +62,13 @@ function RegisterationForm() {
           name="name"
           placeholder="مصطفى قمر"
           type="text"
-          className="p-2 text-xl border-2 rounded-md grow"
+          className="w-full p-2 text-xl text-white border-2 rounded-md"
           value={formDetails.name}
           onChange={handleChange}
         />
       </div>
       <select
-        className="p-2 text-xl border-2 rounded-md"
+        className="w-full p-2 text-xl text-white border-2 rounded-md"
         name="subject"
         onChange={handleChange}
         value={formDetails.subject}
@@ -79,14 +82,14 @@ function RegisterationForm() {
       <input
         name="password"
         placeholder="***********"
-        className="p-2 text-xl border-2 rounded-md"
+        className="w-full p-2 text-xl text-white border-2 rounded-md"
         type="password"
         value={formDetails.password}
         onChange={handleChange}
       />
       <button
         onClick={handleRegister}
-        className="py-3 mt-4 font-bold text-gray-700 bg-orange"
+        className="py-3 mt-4 font-bold text-white bg-orange"
       >
         Register
       </button>

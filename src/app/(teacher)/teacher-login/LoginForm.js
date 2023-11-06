@@ -33,19 +33,22 @@ function LoginForm() {
       <input
         onChange={handleInput}
         type="email"
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl text-white border-2 rounded-md"
         name="email"
         placeholder="mostafa@gmail.com"
       />
       <input
         type="password"
         onChange={handleInput}
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl text-white border-2 rounded-md"
         name="password"
         placeholder="**********"
       />
-      <button className="py-3 mt-4 font-bold bg-orange" onClick={handleSignIn}>
-        Submit
+      <button
+        className="py-3 mt-4 font-bold text-white bg-orange"
+        onClick={handleSignIn}
+      >
+        Log In
       </button>
 
       {requestState === "Failed" && (

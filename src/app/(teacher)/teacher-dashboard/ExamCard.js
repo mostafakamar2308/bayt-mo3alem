@@ -10,7 +10,7 @@ async function ExamCard({ examId }) {
   if (examData) {
     const range = dateRange(examData.from);
     return (
-      <div className="flex items-center justify-between w-2/3 p-4 mt-3 border rounded-lg shadow-md border-accent shadow-accent">
+      <div className="flex flex-wrap items-center justify-between w-full p-4 mt-3 border rounded-lg shadow-md lg:w-2/3 border-accent shadow-accent">
         <div className="">
           <div className="flex items-center gap-2">
             <h1 className={`${archivo_black.className}  text-xl `}>

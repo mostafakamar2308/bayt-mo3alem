@@ -12,7 +12,7 @@ async function layout({ children }) {
   }
   return (
     <section className="flex min-h-screen">
-      <aside className="p-2 px-4 text-white border-r border-black min-w-fit bg-purple">
+      <aside className="hidden p-2 px-4 text-white border-r border-black lg:block min-w-fit bg-purple">
         <h1 className="text-3xl">بيت المعلم</h1>
         <nav className="flex flex-col gap-4 mt-4 text-2xl">
           <Link href={"/student-dashboard/pending-exams"}>Next Exams </Link>

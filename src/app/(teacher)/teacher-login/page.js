@@ -5,11 +5,10 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center h-screen ">
-      <Image src={register1} alt="Image 1" />
-      <div className="w-[40%] p-8 h-fit border text-center bg-white rounded-2xl">
+    <div className="flex flex-wrap items-center justify-center min-h-screen ">
+      <div className="lg:w-[40%] max-w-full p-8 h-fit border text-center bg-white rounded-2xl">
         <h2 className="text-2xl font-bold">السلام عليكم</h2>
-        <p className="mb-8 text-lg font-semibold">
+        <p className="mb-2 text-lg font-semibold lg:mb-8">
           يمكنك تسجيل حساب جديد عن طريق ملء بياناتك هنا
         </p>
         <LoginForm />
@@ -23,6 +22,7 @@ export default function Page() {
           </Link>
         </p>
       </div>
+      <Image src={register1} alt="Image 1" />
     </div>
   );
 }
