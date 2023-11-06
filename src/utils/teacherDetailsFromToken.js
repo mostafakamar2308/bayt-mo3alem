@@ -1,4 +1,5 @@
 import Teacher from "@/DB/Models/Teacher";
+import dbConnect from "@/DB/connect";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -8,6 +9,7 @@ export async function getTeacherDetails() {
   if (token) {
     try {
       const content = jwt.decode(token.value, process.env.JWT_SECRET);
+      await dbConnect();
       const teacherDetails = await Teacher.findOne({
         email: content.email,
         _id: content.id,
