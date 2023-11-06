@@ -6,7 +6,6 @@ import { grades } from "@/constants";
 import ExamSharerPopUp from "./ExamSharerPopUp";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 async function page({ searchParams }) {
   const details = await getTeacherDetails();

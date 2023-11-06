@@ -1,4 +1,5 @@
 "use client";
+import { toastError, toastSuccess } from "@/Components/Toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -8,7 +9,6 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  const [requestState, setRequestState] = useState("Pending");
   const handleSignIn = async function (e) {
     e.preventDefault();
     const req = await fetch("/api/signIn-teacher", {
@@ -17,12 +17,10 @@ function LoginForm() {
     });
     const response = await req.json();
     if (response.success) {
-      setRequestState("Success");
-      setRequestState("Success");
+      toastSuccess("Logged In successfully");
       Router.push("/teacher-dashboard");
-      Router.refresh();
     } else {
-      setRequestState("Failed");
+      toastError("An error has occured, Try again");
     }
   };
   const handleInput = function (e) {
@@ -50,10 +48,6 @@ function LoginForm() {
       >
         Log In
       </button>
-
-      {requestState === "Failed" && (
-        <div className="text-xl text-red-600">حدث خطأ حاول مرة أخري</div>
-      )}
     </form>
   );
 }
