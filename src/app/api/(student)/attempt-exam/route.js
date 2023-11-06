@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import Student from "@/DB/Models/Student";
 import Exam from "@/DB/Models/Exam";
-import { redirect } from "next/navigation";
 
 export async function POST(request) {
   const { answers, examID } = await request.json();

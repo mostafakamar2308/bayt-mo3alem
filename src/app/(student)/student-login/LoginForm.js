@@ -1,10 +1,12 @@
 "use client";
 import { toastError, toastSuccess } from "@/Components/Toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 function LoginForm() {
   const Router = useRouter();
+  const searchParams = useSearchParams();
+  const examURL = searchParams.get("examURL");
   const [formDetails, setFormDetails] = useState({
     email: "",
     password: "",
@@ -19,8 +21,13 @@ function LoginForm() {
       const response = await req.json();
       console.log(response);
       if (response.success) {
-        Router.push("/student-dashboard/pending-exams");
-        Router.refresh();
+        if (examURL) {
+          Router.push("/exam/" + examURL);
+          Router.refresh();
+        } else {
+          Router.push("/student-dashboard/pending-exams");
+          Router.refresh();
+        }
         toastSuccess("تم تسجيل الدخول بنجاح");
       } else {
         toastError("حدث خطأ ما، تأكد من الايميل والباسورد");

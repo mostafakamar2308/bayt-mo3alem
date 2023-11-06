@@ -17,13 +17,21 @@ export async function middleware(request) {
       return NextResponse.redirect(new URL("/teacher-login", request.url));
     }
   }
-  if (
-    request.nextUrl.pathname.startsWith("/student") ||
-    request.nextUrl.pathname.startsWith("/exam")
-  ) {
+  if (request.nextUrl.pathname.startsWith("/student")) {
     const studentToken = request.cookies.get("student-token");
     if (!studentToken) {
       return NextResponse.redirect(new URL("/student-login", request.url));
+    }
+  }
+  if (request.nextUrl.pathname.startsWith("/exam")) {
+    const studentToken = request.cookies.get("student-token");
+    if (!studentToken) {
+      return NextResponse.redirect(
+        new URL(
+          "/student-login?examURL=" + request.nextUrl.pathname.split("/")[2],
+          request.url
+        )
+      );
     }
   }
   return NextResponse.next();
