@@ -1,5 +1,6 @@
 import Exam from "@/DB/Models/Exam";
 import Teacher from "@/DB/Models/Teacher";
+import Student from "@/DB/Models/Student";
 import dateRange from "@/utils/dateInPast";
 import MultiExamForm from "./MultiExamForm";
 import jwt from "jsonwebtoken";
@@ -25,24 +26,37 @@ async function page({ params }) {
     redirect("/student-dashboard/exam/" + exam._id.toString());
   }
   const teacher = await Teacher.findById(exam.teacherId);
-  const isSubscribed = teacher.studentIds.find(
-    (grade) => grade.grade === exam.grade
+  const student = await Student.findOne({ _id: studentId });
+  const isSubscribed = student.teacherIds.find(
+    (teacher) => teacher.toString() === teacher._id.toString()
   );
   if (!isSubscribed) {
-    teacher.studentIds.push({
-      grade: exam.grade,
-      students: [new mongoose.Types.ObjectId(studentId)],
-    });
-    await teacher.save();
-  } else {
-    const isStudent = isSubscribed.students.find(
-      (student) => student.toString() === studentId
-    );
-    if (!isStudent) {
-      isSubscribed.students.push(new mongoose.Types.ObjectId(studentId));
-      await teacher.save();
+    student.teacherIds.push(teacher._id);
+    if (teacher.studentIds.length > 0) {
+      teacher.studentIds[0].push(student._id);
+    } else {
+      teacher.studentIds = [{ grade: student.grade, students: [student._id] }];
     }
+    await student.save();
+    await teacher.save();
   }
+  // if (!isSubscribed) {
+  //   teacher.studentIds.push({
+  //     grade: exam.grade,
+  //     students: [new mongoose.Types.ObjectId(studentId)],
+  //   });
+  //   await teacher.save();
+  // } else {
+  //   const isStudent = isSubscribed.students.find(
+  //     (student) => student.toString() === studentId
+  //   );
+  //   if (!isStudent) {
+  //     isSubscribed.students.push(new mongoose.Types.ObjectId(studentId));
+  //     student.teacherIds.push(teacher._id);
+  //     await student.save();
+  //     await teacher.save();
+  //   }
+  // }
   const serializedExam = JSON.parse(JSON.stringify(exam));
   const serializedTeacher = JSON.parse(JSON.stringify(teacher));
   const formattedQuestions = formatExam(serializedExam);

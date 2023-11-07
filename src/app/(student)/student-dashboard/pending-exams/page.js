@@ -11,6 +11,7 @@ async function page() {
   const { id } = getStudentIdFromToken();
   const student = await Student.findOne({ _id: id });
   const teachers = await Teacher.find({ _id: { $in: student.teacherIds } });
+  console.log(student);
   const teachersExams = teachers
     .map((teacher) =>
       teacher.examsCreated
