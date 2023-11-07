@@ -10,7 +10,6 @@ import { DtPicker } from "react-calendar-datetime-picker";
 import "react-calendar-datetime-picker/dist/style.css";
 import { useRouter } from "next/navigation";
 import { toastError, toastSuccess } from "@/Components/Toast";
-import SegmentQuestionComponent from "./SegmentQuestionComponent";
 import SegmentQuestionInView from "./SegmentQuestionInView";
 
 function ExamForm() {
@@ -100,13 +99,13 @@ function ExamForm() {
       <div className="flex flex-wrap gap-4 lg:w-4/5 grow lg:items-center lg:flex-nowrap">
         <input
           autoFocus
-          className="px-4 py-2 text-lg bg-transparent border-b-2 border-gray-400 focus:outline-none"
+          className="w-full py-2 text-lg bg-transparent border-b-2 border-gray-400 indent-2 focus:outline-none"
           placeholder="Exam Name"
           name="examName"
           onChange={changeExamDetails}
         />
         <select
-          className="px-4 py-2 text-lg bg-transparent border-2 border-gray-400 rounded-md "
+          className="w-full py-2 text-lg bg-transparent border-2 border-gray-400 rounded-md indent-2 "
           defaultValue={examDetails.grade}
           name="grade"
           onChange={changeExamDetails}
@@ -125,7 +124,7 @@ function ExamForm() {
           inputClass=" bg-transparent "
         />
       </div>
-      <div className="flex flex-col items-center gap-4 m-4">
+      <div className="flex flex-col items-center gap-2 mt-2 lg:m-4">
         {examDetails.questions.map((question, index) =>
           question.questionType !== "segment" ? (
             <MCQQuestionInView
@@ -144,7 +143,7 @@ function ExamForm() {
       </div>
       <button
         onClick={toggleNewQuestionPop}
-        className="fixed flex gap-2 p-2 px-4 rounded-full bg-secondary bottom-10 right-10"
+        className="fixed flex gap-2 p-2 px-4 rounded-full bg-secondary bottom-10 right-5 lg:right-10"
       >
         <Image src={plus} alt="add new question" width={28} />
         Create New Question{" "}

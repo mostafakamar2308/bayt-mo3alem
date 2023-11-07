@@ -2,7 +2,7 @@ import React from "react";
 
 function MCQComponent({ question, students }) {
   return (
-    <div className="p-4 mt-6 border rounded-md border-accent">
+    <div className="w-full p-4 mt-6 border rounded-md border-accent">
       <div className="flex justify-between">
         <h3 className="">{question.questionContent.questionHead}</h3>
         <div

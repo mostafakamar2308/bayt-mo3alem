@@ -24,7 +24,7 @@ async function page({ params }) {
   );
 
   return (
-    <div className="p-2">
+    <div className="p-2 ">
       <div className="flex items-center gap-2">
         <h2 className={`${archivo_black.variable} text-2xl font-bold`}>
           {exam.examName}
@@ -39,29 +39,29 @@ async function page({ params }) {
       </div>
 
       <h4>{grades.find((grade) => grade.value === exam.grade).name}</h4>
-      <div className="flex justify-center gap-4 mt-2">
-        <div className="p-3 text-center border rounded-lg grow">
-          <h3 className="text-3xl">Average Score</h3>
+      <div className="flex flex-col flex-wrap gap-4 mt-2 lg:flex-row lg:justify-center">
+        <div className="text-center border rounded-lg lg:p-3 lg:grow">
+          <h3 className="text-xl lg:text-3xl">Average Score</h3>
           <h2 className="text-2xl text-center">{exam.stats.averageScore}</h2>
         </div>
-        <div className="p-3 text-center border rounded-lg grow">
-          <h3 className="text-3xl">Average Time</h3>
+        <div className="text-center border rounded-lg lg:p-3 lg:grow">
+          <h3 className="text-xl lg:text-3xl">Average Time</h3>
           <h2 className="text-2xl text-center">0:00</h2>
         </div>
-        <div className="p-3 text-center border rounded-lg grow">
-          <h3 className="text-3xl">Number of Students</h3>
+        <div className="text-center border rounded-lg lg:p-3 lg:grow">
+          <h3 className="text-xl lg:text-3xl">Number of Students</h3>
           <h2 className="text-2xl text-center">{exam.studentIds.length}</h2>
         </div>
       </div>
-      <div className="flex justify-center gap-4 mt-2">
+      <div className="flex flex-col justify-center gap-4 mt-2 lg:flex-row">
         <div className="p-3 text-center border rounded-lg grow">
-          <h3 className="text-3xl">Highest Score</h3>
+          <h3 className="text-xl lg:text-3xl">Highest Score</h3>
           <h2 className="text-2xl text-center">
             {exam.stats.highestScore[0].score}
           </h2>
         </div>
         <div className="p-3 text-center border rounded-lg grow">
-          <h3 className="text-3xl">Lowest Score</h3>
+          <h3 className="text-xl lg:text-3xl">Lowest Score</h3>
           <h2 className="text-2xl text-center">
             {exam.stats.lowestScore[0].score}
           </h2>
@@ -80,8 +80,10 @@ async function page({ params }) {
           Question Analysis
         </h3>
         <div className="p-4 mt-2 border rounded-md">
-          <h3 className={`${archivo_black.variable} text-xl font-bold`}>
-            Sections Analysis
+          <h3
+            className={`${archivo_black.variable} text-base lg:text-xl font-bold`}
+          >
+            Section Analysis (most problematic sections)
           </h3>
           <div>
             <BarchartComponent

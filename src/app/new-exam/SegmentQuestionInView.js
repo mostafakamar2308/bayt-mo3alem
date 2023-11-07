@@ -23,7 +23,7 @@ function SegmentQuestionInView({ question, changeQuestionAnswer }) {
   };
 
   return (
-    <div className="w-1/2 px-4 py-2 mb-2 text-xl border-2 border-gray-400 rounded-md">
+    <div className="w-full px-4 py-2 mb-2 text-xl border-2 border-gray-400 rounded-md lg:w-1/2">
       <p className="p-2 border rounded-md">
         {question.questionContent.segment}
       </p>

@@ -119,7 +119,7 @@ function SegmentQuestionComponent({
               id={"questionHead-" + questionIndex}
               name="questionHead"
               onChange={handleChangeQuestionHead}
-              className="w-full bg-transparent border"
+              className="w-full bg-transparent border rounded-md"
               placeholder="Question Head"
               defaultValue={question.questionHead}
             />
@@ -158,7 +158,13 @@ function SegmentQuestionComponent({
       </button>
       <div className="flex self-end gap-4">
         <button
-          className="p-2 text-xl rounded-md bg-orange"
+          onClick={closeModal}
+          className="p-2 text-white rounded-md lg:text-xl bg-purple"
+        >
+          Cancel
+        </button>
+        <button
+          className="p-2 text-white rounded-md lg:text-xl bg-orange"
           onClick={(e) => {
             e.preventDefault();
             addNewQuestion({ questionType, questionContent: segmentDetails });
@@ -166,12 +172,6 @@ function SegmentQuestionComponent({
           }}
         >
           Add Segment Questions{" "}
-        </button>
-        <button
-          onClick={closeModal}
-          className="p-2 text-xl text-white rounded-md bg-purple"
-        >
-          Cancel
         </button>
       </div>
     </div>

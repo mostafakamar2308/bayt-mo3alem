@@ -12,7 +12,7 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
 
   return (
     <div className="fixed w-screen h-screen flex justify-center items-center bg-[rgba(0,0,0,.5)]">
-      <div className="w-1/2 p-4 bg-white rounded-md ">
+      <div className="p-4 bg-white rounded-md lg:w-1/2 ">
         <div>
           <select
             value={questionType}

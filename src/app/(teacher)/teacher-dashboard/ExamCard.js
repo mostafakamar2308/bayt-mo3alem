@@ -11,8 +11,8 @@ async function ExamCard({ examId }) {
     const range = dateRange(examData.from);
     return (
       <div className="flex flex-wrap items-center justify-between w-full p-4 mt-3 border rounded-lg shadow-md lg:w-2/3 border-accent shadow-accent">
-        <div className="">
-          <div className="flex items-center gap-2">
+        <div className="w-full lg:w-fit">
+          <div className="flex items-center justify-between gap-2">
             <h1 className={`${archivo_black.className}  text-xl `}>
               {examData.examName}
             </h1>
@@ -28,7 +28,7 @@ async function ExamCard({ examId }) {
             {grades.filter((grade) => grade.value === examData.grade)[0].name}
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col justify-center lg:items-center">
           <p>Students No.: {examData.studentIds.length}</p>
           <p className="mt-2">
             Date:{" "}
@@ -40,11 +40,11 @@ async function ExamCard({ examId }) {
             })}
           </p>
         </div>
-        <div className="flex flex-col">
+        <div className="flex justify-between w-full lg:flex-col lg:w-fit">
           <ExamSharerButton examID={examData._id.toString()} />
           <Link
             href={"/teacher-dashboard/exam/" + examId}
-            className="p-2 mt-2 duration-300 border rounded-md border-purple hover:bg-purple hover:text-white"
+            className="p-2 mt-2 text-center duration-300 border rounded-md border-purple hover:bg-purple hover:text-white"
           >
             See Results
           </Link>

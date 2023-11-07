@@ -10,7 +10,6 @@ function Calendar({ exams }) {
     start: new Date(exam.start),
     end: new Date(exam.start),
   }));
-  console.log(examsFormatted);
   return (
     <FullCalendar
       events={examsFormatted}
@@ -26,6 +25,7 @@ function Calendar({ exams }) {
         start: "today prev next",
         end: "dayGridMonth dayGridWeek",
       }}
+      height={"90vh"}
       plugins={[dayGridPlugin]}
       views={["dayGridMonth", "dayGridWeek"]}
     />

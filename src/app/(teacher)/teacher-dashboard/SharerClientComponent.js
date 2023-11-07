@@ -7,7 +7,7 @@ function SharerClientComponent({ URL, closePopup }) {
     navigator.clipboard.writeText(URL);
   };
   return (
-    <div className="flex justify-center gap-4 p-4">
+    <div className="flex justify-center gap-2 p-4 text-base text-center lg:gap-4 ">
       <button
         className="p-2 duration-300 border rounded-md border-orange hover:bg-orange hover:text-white"
         onClick={(e) => {

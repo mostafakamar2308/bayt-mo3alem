@@ -5,7 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: [{ pattern: /bg-/ }],
+  safelist: [{ pattern: /bg-/ }, "sticky"],
   theme: {
     extend: {
       fontFamily: {

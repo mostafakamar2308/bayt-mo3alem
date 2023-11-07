@@ -35,14 +35,11 @@ function MultiExamForm({ examName, examID, questions, teacher }) {
       choosenAnswer: e.target.textContent,
     };
     const currentSegment = answers.find((answer) => answer.segment === segment);
-    console.log(currentSegment);
     if (currentSegment) {
-      console.log("segment is here");
       const currentAnswers = currentSegment.answers;
       const currentQuestion = currentAnswers.find(
         (answer) => answer.questionHead === questionHead
       );
-      console.log(currentQuestion);
       if (currentQuestion) {
         setAnswer((prev) => {
           return prev.map((question) => {
@@ -78,8 +75,6 @@ function MultiExamForm({ examName, examID, questions, teacher }) {
         });
       }
     } else {
-      console.log("segment isn't here");
-      console.log(segment);
       setAnswer((prev) => [...prev, { segment, answers: [newAnswer] }]);
     }
   };
@@ -113,8 +108,8 @@ function MultiExamForm({ examName, examID, questions, teacher }) {
   } else if (step < questions.length) {
     return (
       <div className="flex flex-col min-h-screen">
-        <h1>امتحان اللغة العربية</h1>
-        <h3>أستاذ: {teacher.name}</h3>
+        <h1>{examName}</h1>
+        <h3>Mr: {teacher.name}</h3>
         <div className="flex gap-4">
           <QuestionsStepper
             currStep={step}
@@ -124,7 +119,7 @@ function MultiExamForm({ examName, examID, questions, teacher }) {
         </div>
         <div className="flex flex-col grow">
           <h4>
-            السؤال {step + 1}: ({questions[step].questionType})
+            Question {step + 1}: ({questions[step].questionType})
           </h4>
           {questions[step].questionType !== "segment" ? (
             <MCQquestion

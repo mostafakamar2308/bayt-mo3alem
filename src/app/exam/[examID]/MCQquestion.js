@@ -2,7 +2,7 @@
 
 function MCQquestion({ question, chooseAnswer, currentAnswer }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-5 grow lg:p-4 lg:items-stretch">
+    <div className="flex flex-col justify-center gap-5 p-2 grow lg:p-4 lg:items-stretch">
       <p className="text-4xl">{question.questionHead}</p>
       <div className="flex flex-col gap-4 ">
         {question.answers.map((answer, index) => (
@@ -10,7 +10,7 @@ function MCQquestion({ question, chooseAnswer, currentAnswer }) {
             onClick={(e) => {
               chooseAnswer(e);
             }}
-            className={`p-2 text-xl text-right border rounded-md border-purple hover:bg-purple hover:text-white  
+            className={`p-2 text-xl text-left  border rounded-md border-purple hover:bg-purple hover:text-white  
                 ${
                   currentAnswer === answer.value
                     ? "bg-yellow-400 hover:bg-yellow-400 hover:text-text"

@@ -15,7 +15,7 @@ function MCQQuestionInView({ question, changeQuestionAnswer }) {
     changeQuestionAnswer(newQuestion);
   };
   return (
-    <div className="w-1/2 px-4 py-2 mb-2 text-xl border-2 border-gray-400 rounded-md">
+    <div className="w-full px-4 py-2 mb-2 text-xl border-2 border-gray-400 rounded-md lg:w-1/2">
       <h2 className="mb-2 text-2xl font-semibold">
         {question.questionContent.questionHead}
       </h2>

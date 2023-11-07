@@ -19,18 +19,18 @@ async function page({ params }) {
     redirect("/exam/" + params.examID);
   }
   return (
-    <div className="p-4">
+    <div className="p-4" dir="ltr">
       <h3 className="flex items-center gap-1 mb-4 text-3xl">
-        عاش يا {student.name.split(" ")[0]}
+        Great Job {student.name.split(" ")[0]}!
       </h3>
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-1 text-xl">
-            درجتك في امتحان: <h1>{exam.examName}</h1>
+          <div className="text-xl ">
+            Your results in{" "}
+            <span className="font-semibold text-purple">{exam.examName}</span>
           </div>
           <p>
-            امتحنته في يوم:{" "}
-            {new Date(studentExam.date).toLocaleDateString("ar-eg")}
+            Attempted on: {new Date(studentExam.date).toLocaleDateString("en")}
           </p>
         </div>
         <div
@@ -48,8 +48,8 @@ async function page({ params }) {
         </div>
       </div>
 
-      <h4 className="text-xl">إجاباتك في الامتحان:</h4>
-      <div className="p-4">
+      <h4 className="text-xl">Your Answers:</h4>
+      <div className="lg:p-4">
         {exam.Questions.map((question, index) => {
           if (question.questionType !== "segment") {
             const studentChoosenAnswer = studentExam.exam.examAnswers.find(

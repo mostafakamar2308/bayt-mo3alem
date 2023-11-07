@@ -10,15 +10,14 @@ async function page() {
   return (
     <div className="">
       <h2 className="p-4 text-3xl border-b w-fit border-purple">
-        أهلا بك يا <span className="font-bold text-purple">{student.name}</span>
+        Hi <span className="font-bold text-purple">{student.name}</span>!
       </h2>
       <div className="p-2">
         <p className="text-xl">
-          لقد امتحنت حتي الان: {student.examsSubmitted.length} امتحان
+          You have attempted {student.examsSubmitted.length} exams
         </p>
         <div>
           {student.examsSubmitted.map((subject) => {
-            console.log();
             return (
               <div key={subject._id} className="flex flex-col items-center">
                 <p className="self-start m-4 mb-0 text-2xl font-bold">

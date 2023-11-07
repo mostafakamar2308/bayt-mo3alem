@@ -1,8 +1,10 @@
 const SegmentQuestion = ({ wholeQuestion, currentAnswers, chooseAnswer }) => {
   console.log(currentAnswers);
   return (
-    <div className="flex flex-col items-center justify-center gap-5 grow min-h-fit lg:p-4 lg:items-stretch">
-      <p className="text-4xl">{wholeQuestion.segment}</p>
+    <div className="flex flex-col justify-center gap-5 p-2 grow min-h-fit lg:p-4 lg:items-stretch">
+      <p className="p-1 text-4xl border border-green-600 rounded-md">
+        {wholeQuestion.segment}
+      </p>
       {wholeQuestion.questions.map((question, index) => (
         <>
           <p className="text-4xl">{question.questionHead}</p>

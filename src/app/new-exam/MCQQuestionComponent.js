@@ -49,13 +49,13 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
     }));
   };
   return (
-    <div className="p-4  max-h-[90vh]">
+    <div className="lg:p-4 p-2  lg:max-h-[90vh] max-h-[95vh]">
       <textarea
         required
         name="questionHead"
         placeholder="Question Head"
         onChange={changeQuestionHeadORExplain}
-        className="w-3/4 p-3 mb-4 bg-transparent border-b-2"
+        className="w-full p-3 mb-4 bg-transparent border-b-2 lg:w-3/4"
       />
       {questionDetails.answers.map((answer, index) => (
         <div className="flex items-end gap-4 mb-2" key={index}>
@@ -63,7 +63,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
             id={index}
             required
             onChange={changeAnswerText}
-            className="w-3/4 p-3 bg-transparent border-b-2"
+            className="p-3 bg-transparent border-b-2 lg:w-3/4"
             placeholder="Answer"
           />
           <input
@@ -79,7 +79,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
       <textarea
         name="explaination"
         placeholder="Explaination"
-        className="w-3/4 p-3 bg-transparent border-2 rounded-md"
+        className="w-full p-3 bg-transparent border-2 rounded-md lg:w-3/4"
         onChange={changeQuestionHeadORExplain}
         value={questionDetails.explaination}
       ></textarea>
@@ -91,7 +91,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
           Cancel
         </button>
         <button
-          className="p-2 text-xl rounded-md bg-orange"
+          className="p-2 text-xl text-white rounded-md bg-orange"
           onClick={(e) => {
             e.preventDefault();
             addNewQuestion({ questionType, questionContent: questionDetails });

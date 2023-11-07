@@ -6,14 +6,16 @@ import StudentCard from "./StudentCard";
 async function page() {
   const teacherDetails = await getTeacherDetails();
   return (
-    <div>
-      <h1> السلام عليكم ورحمة الله</h1>
-      <p>
+    <div className="p-2" dir="rtl">
+      <h1 className="text-2xl"> السلام عليكم ورحمة الله</h1>
+      <p className="text-xl">
         عدد طلابك الكلي:{" "}
-        {teacherDetails.studentIds.reduce(
-          (prev, curr) => prev + curr.students.length,
-          0
-        )}
+        <span className="text-2xl">
+          {teacherDetails.studentIds.reduce(
+            (prev, curr) => prev + curr.students.length,
+            0
+          )}
+        </span>{" "}
         طالب
       </p>
       <div>
@@ -22,8 +24,8 @@ async function page() {
             (grade) => grade.value === group.grade
           ).name;
           return (
-            <div key={group.grade}>
-              <h4>طلاب {groupGrade}:</h4>
+            <div key={group.grade} dir="rtl">
+              <h4 className="mt-4 text-2xl text-purple">طلاب {groupGrade}:</h4>
               <div>
                 {group.students.map((student) => (
                   <StudentCard key={student} grade={groupGrade} id={student} />

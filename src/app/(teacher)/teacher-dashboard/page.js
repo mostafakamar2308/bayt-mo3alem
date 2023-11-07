@@ -25,7 +25,9 @@ async function page({ searchParams }) {
             <div key={group.grade}>
               <p>
                 Exams of:{" "}
-                {grades.find((grade) => group.grade === grade.value).name}
+                <span className="text-xl font-bold">
+                  {grades.find((grade) => group.grade === grade.value).name}
+                </span>
               </p>
               <div>
                 {group.exams.map((exam) => {
