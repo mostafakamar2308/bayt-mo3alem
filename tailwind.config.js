@@ -9,7 +9,7 @@ module.exports = {
     { pattern: /bg-/ },
     "sticky",
     "hidden",
-    { pattern: /max-w/ },
+    { pattern: /max-w/, variants: ["lg", "hover", "lg:hover"] },
     { pattern: /rounded/ },
   ],
   theme: {
