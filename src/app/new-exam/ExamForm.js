@@ -11,6 +11,7 @@ import "react-calendar-datetime-picker/dist/style.css";
 import { useRouter } from "next/navigation";
 import { toastError, toastSuccess } from "@/Components/Toast";
 import SegmentQuestionInView from "./SegmentQuestionInView";
+import moment from "moment/moment";
 
 function ExamForm() {
   const [examDetails, setExamDetails] = useState({
@@ -90,7 +91,9 @@ function ExamForm() {
       console.log(result);
       setExamDetails((prev) => ({
         ...prev,
-        from: new Date(result.year, result.month - 1, result.day),
+        from: moment(`${result.year}-${result.month}-${result.day}`).format(
+          "YYYY-MM-DD"
+        ),
       }));
     }
   };
