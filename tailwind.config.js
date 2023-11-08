@@ -10,7 +10,8 @@ module.exports = {
     "sticky",
     "hidden",
     "lg:inline",
-    { pattern: /max-w/, variants: ["lg", "hover", "lg:hover"] },
+    "lg:max-w-[200px]",
+    // { pattern: /max-w/, variants: ["lg", "hover", "lg:hover"] },
     { pattern: /rounded/ },
   ],
   theme: {
