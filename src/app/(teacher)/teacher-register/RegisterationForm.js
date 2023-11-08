@@ -11,7 +11,7 @@ function RegisterationForm() {
     name: "",
     phoneNumber: "",
     gender: "male",
-    subject: "arabic",
+    subject: "english",
   });
   const [requestState, setRequestState] = useState("Pending");
   const handleChange = (e) => {
@@ -55,8 +55,8 @@ function RegisterationForm() {
       />
       <div className="flex gap-2">
         <select className="p-2 border-2" onChange={handleChange} name="gender">
-          <option value="male">أستاذ</option>
-          <option value={"female"}>أستاذة</option>
+          <option value="male">Mr</option>
+          <option value={"female"}>Miss</option>
         </select>
         <input
           name="name"
@@ -67,18 +67,7 @@ function RegisterationForm() {
           onChange={handleChange}
         />
       </div>
-      <select
-        className="w-full p-2 text-xl text-white border-2 rounded-md"
-        name="subject"
-        onChange={handleChange}
-        value={formDetails.subject}
-      >
-        {subjects.map((subject) => (
-          <option value={subject.value} key={subject.value}>
-            {subject.name}
-          </option>
-        ))}
-      </select>
+
       <input
         name="password"
         placeholder="***********"
