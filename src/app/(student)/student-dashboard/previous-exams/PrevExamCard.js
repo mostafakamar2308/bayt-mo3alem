@@ -1,14 +1,10 @@
 import Exam from "@/DB/Models/Exam";
 import Teacher from "@/DB/Models/Teacher";
-import { subjects } from "@/constants";
 import Link from "next/link";
 async function ExamCard({ exam }) {
   const examDetails = await Exam.findOne({ _id: exam.examId });
   const teacher = await Teacher.findOne({ _id: examDetails.teacherId });
-  const examSubject = subjects.filter(
-    (subject) => subject.value === teacher.subject
-  )[0].name;
-  console.log({ exam, examDetails, teacher });
+
   return (
     <div className="flex justify-between p-4 mt-4 border rounded-md lg:w-5/6 border-purple">
       <div className="flex flex-col gap-2">

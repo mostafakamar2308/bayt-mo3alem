@@ -2,6 +2,8 @@ import getStudentIdFromToken from "@/utils/getStudentFromToken";
 import Student from "@/DB/Models/Student";
 import ExamCard from "./PrevExamCard";
 import { subjects } from "@/constants";
+import { Suspense } from "react";
+import LoadingSpinner from "@/Components/LoadingSpinner";
 
 async function page() {
   const { id } = getStudentIdFromToken();
@@ -31,9 +33,11 @@ async function page() {
                     }
                   </span>
                 </p>
-                {subject.exams.map((exam) => (
-                  <ExamCard key={exam.examId} exam={exam.exam} />
-                ))}
+                <Suspense fallback={<LoadingSpinner />}>
+                  {subject.exams.map((exam) => (
+                    <ExamCard key={exam.examId} exam={exam.exam} />
+                  ))}
+                </Suspense>
               </div>
             );
           })}

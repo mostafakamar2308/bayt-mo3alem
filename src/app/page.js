@@ -2,10 +2,8 @@ import Image from "next/image";
 import Content from "./Content";
 import Hero from "./Hero";
 import onlineTest from "@/Assets/Online test-rafiki.png";
-import onlineTeacher from "@/Assets/exams.png";
 import Nav from "@/Components/Nav";
 import FAQSection from "./FAQSection";
-import LeadRegisterationForm from "./LeadRegisterationForm";
 import Footer from "@/Components/Footer";
 
 export default async function Home() {
@@ -25,19 +23,7 @@ export default async function Home() {
       <hr className="text-gray-600 bg-gray-600 border-gray-600 "></hr>
       <FAQSection />
       <hr className="text-gray-600 bg-gray-600 border-gray-600 "></hr>
-      <section className="items-center gap-4 p-4 lg:flex">
-        <Image src={onlineTeacher} alt="مدرس" className="lg:w-1/2" />
-        <div className="p-4 mt-2 text-white rounded-md shadow-md shadow-primary bg-accent lg:mt-0 lg:w-2/5 h-3/4">
-          <h3 className="mb-2 text-2xl text-center">
-            تريد أن تحسن من مستوي طلابك؟
-          </h3>
-          <p className="text-center">
-            سجل اسمك ورقم هاتفك وسنتواصل معك حين اكتمال البرنامج بإذن الله.
-          </p>
-          <LeadRegisterationForm />
-        </div>
-      </section>
-      <hr className="text-gray-600 bg-gray-600 border-gray-600 "></hr>
+
       <Footer />
     </>
   );

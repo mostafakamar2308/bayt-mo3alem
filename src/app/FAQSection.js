@@ -5,33 +5,39 @@ function FAQSection() {
     <section className="p-4 pb-8 text-center">
       <h3 className="mb-2 text-3xl">قسم الأسئلة الشائعة</h3>
       <div className="flex flex-col gap-6 ">
-        <FAQ title={"كيف سيعمل الموقع؟"}>
+        <FAQ title={"How will the website work?"}>
           <p className="text-lg text-right lg:w-1/2">
-            ستستطيع كمعلم أن تصمم امتحان جديد وعند انتهائك سيتم ارسال اشعار لكل
-            الطلبة المشتركين معك. حتي يستطيع الطالب أداء الامتحان. وبعد انتهاء
-            الطالب من الامتحان، سيتم ارسال تقرير بالكامل لك وللطالب عن أداءه
-            للامتحان.
+            {" "}
+            As a teacher, you will be able to create a new exam, and once you
+            are done, notifications will be sent to all the subscribed students
+            so that they can take the exam. After the student completes the
+            exam, a comprehensive report on their performance in the exam will
+            be sent to both you and the student.
           </p>
         </FAQ>
-        <FAQ title={"هل أستطيع اعطاء نصائح للطلبة مباشرة بعد الامتحان؟"}>
+        {/* <FAQ title={"هل أستطيع اعطاء نصائح للطلبة مباشرة بعد الامتحان؟"}>
           <p className="text-lg text-right lg:w-1/2">
-            بالتأكيد، موقعنا يوفر لك طريقتين حتي تساعد طلابك، فيمكنك وأنت تصمم
-            الامتحان، ان تضع لكل سؤال تفسير للإجابة. يراها الطالب بعد الانتهاء
-            من الامتحان. وبعد انتهاء الطالب للامتحان تستطيع الاطلاع علي أداءه في
-            الامتحان وارسال تعليق له عن الامتحان وما يجب أن يركز عليه.
+            {" "}
+            Certainly, our website offers you two ways to help your students.
+            While designing the exam, you can provide an explanation for each
+            question's answer. The student will see it after finishing the exam.
+            After the student completes the exam, you can review their
+            performance in the exam and send them feedback on the exam and what
+            they should focus on.
           </p>
-        </FAQ>
-        <FAQ title={"هل لكم برنامج علي الموبايل؟"}>
+        </FAQ> */}
+        <FAQ title={"Do you have a mobile app?"}>
           <p className="text-lg text-right lg:w-1/2">
-            علي الرغم من أننا لا نملك برنامج علي الموبايل، إلا أن موقعنا مصمم
-            خصيصا ليكون متوافق مع جميع الهواتف المحمولة، حتي نضمن تجربة سهلة بلا
-            أي مشاكل.{" "}
+            Although we don&apos;t have a mobile app, our website is
+            specifically designed to be compatible with all mobile phones to
+            ensure a smooth and problem-free experience.
           </p>{" "}
         </FAQ>
-        <FAQ title={"هل يستطيع الموقع تحمل عدد طلاب كبير؟"}>
+        <FAQ title={"Can the website handle a large number of students?"}>
           <p className="text-lg text-right lg:w-1/2">
-            بالتأكيد، صممنا هذا الموقع ليستطيع تحمل عدد كبير من الطلاب في نفس
-            الوقت
+            {" "}
+            Absolutely, we designed this website to be able to handle a large
+            number of students at the same time.
           </p>
         </FAQ>
       </div>

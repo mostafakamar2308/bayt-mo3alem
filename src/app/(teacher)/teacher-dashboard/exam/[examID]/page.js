@@ -8,6 +8,7 @@ import getGradeDistribution from "@/utils/getGradeDistribution";
 import SegmentComponent from "../SegmentComponent";
 import MCQComponent from "./MCQComponent";
 import { archivo_black } from "@/app/fonts";
+import { Suspense } from "react";
 
 async function page({ params }) {
   await dbConnect();
@@ -71,7 +72,11 @@ async function page({ params }) {
         <h3 className={`${archivo_black.variable} text-xl font-semibold`}>
           Grades Distribution
         </h3>
-        <BarchartComponent data={gradeDistribution} dataKey={"gradeRange"} />
+        <Suspense
+          fallback={<div>Loading Bar chart for your student Grades</div>}
+        >
+          <BarchartComponent data={gradeDistribution} dataKey={"gradeRange"} />
+        </Suspense>
       </div>
       <div className="mt-3">
         <h3
@@ -86,10 +91,14 @@ async function page({ params }) {
             Section Analysis (most problematic sections)
           </h3>
           <div>
-            <BarchartComponent
-              data={formattedHardestQuestions}
-              dataKey={"section"}
-            />
+            <Suspense
+              fallback={<div>Loading Bar chart for hardest questions</div>}
+            >
+              <BarchartComponent
+                data={formattedHardestQuestions}
+                dataKey={"section"}
+              />
+            </Suspense>
           </div>
         </div>
         <div className="p-4">

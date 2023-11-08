@@ -4,6 +4,7 @@ import ExamCard from "./ExamCard";
 import Link from "next/link";
 import { grades } from "@/constants";
 import ExamSharerPopUp from "./ExamSharerPopUp";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -30,9 +31,11 @@ async function page({ searchParams }) {
                 </span>
               </p>
               <div>
-                {group.exams.map((exam) => {
-                  return <ExamCard key={exam.date} examId={exam.id} />;
-                })}
+                <Suspense fallback={<div>Loading Your Exams ...</div>}>
+                  {group.exams.map((exam) => {
+                    return <ExamCard key={exam.date} examId={exam.id} />;
+                  })}
+                </Suspense>
               </div>
             </div>
           );

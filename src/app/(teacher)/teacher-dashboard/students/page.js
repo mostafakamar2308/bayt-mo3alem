@@ -1,6 +1,6 @@
 import { grades } from "@/constants";
 import { getTeacherDetails } from "@/utils/teacherDetailsFromToken";
-import React from "react";
+import React, { Suspense } from "react";
 import StudentCard from "./StudentCard";
 
 async function page() {
@@ -27,9 +27,15 @@ async function page() {
             <div key={group.grade} dir="rtl">
               <h4 className="mt-4 text-2xl text-purple">طلاب {groupGrade}:</h4>
               <div>
-                {group.students.map((student) => (
-                  <StudentCard key={student} grade={groupGrade} id={student} />
-                ))}
+                <Suspense fallback={<div>Loading Your Students ...</div>}>
+                  {group.students.map((student) => (
+                    <StudentCard
+                      key={student}
+                      grade={groupGrade}
+                      id={student}
+                    />
+                  ))}
+                </Suspense>
               </div>
             </div>
           );

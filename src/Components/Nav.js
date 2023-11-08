@@ -10,10 +10,10 @@ async function Nav() {
       </Link>
       <nav className="flex items-center gap-2 text-lg lg:gap-4">
         <Link
-          href="https://t.me/Madareg_barmja"
+          href="/teacher-login"
           className="p-1 border border-gray-700 rounded-md lg:p-2"
         >
-          Contact Us{" "}
+          Login{" "}
         </Link>
 
         <Link

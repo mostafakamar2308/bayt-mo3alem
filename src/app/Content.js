@@ -4,35 +4,42 @@ import Image from "next/image";
 
 function Content() {
   return (
-    <div className="flex flex-col py-8 text-right">
+    <div className="flex flex-col py-8 text-left ">
       <p className="text-2xl">
-        منصة بيت المعلم تمنحك السيطرة الكاملة علي عملية صناعة الامتحانات وتقييم
-        الطلاب، حيث تقدم لك:
+        WordThread gives you complete control over creating exams and evaluating
+        them by:
+        {/* منصة بيت المعلم تمنحك السيطرة الكاملة علي عملية صناعة الامتحانات وتقييم
+        الطلاب، حيث تقدم لك: */}
       </p>
       <ul className="p-2 px-4 text-xl">
         <li className="flex items-center gap-1">
           <Image src={tick} alt="checkmark" width={24} height={24} />
-          خدمة اعداد الامتحانات، بواجهة سهلة لانشاء أسئلة متنوعة
+          An easy way to create Questions with a simple interface.
+          {/* خدمة اعداد الامتحانات، بواجهة سهلة لانشاء أسئلة متنوعة */}
         </li>
         <li className="flex items-center gap-1">
           <Image src={tick} alt="checkmark" width={24} height={24} />
-          خدمة التصحيح الالي للامتحانات لتوفير وقت المعلم
+          The Auto grading of each exam to help busy teachers.
+          {/* خدمة التصحيح الالي للامتحانات لتوفير وقت المعلم */}
         </li>
         <li className="flex items-center gap-1">
           <Image src={tick} alt="checkmark" width={24} height={24} />
-          تقييم فوري للطالب بمجرد انتهائه من الامتحان، وتحليل لنتيجته وتحديد
-          نقاط قوته ونقاط ضعفه
+          Immediate Analysis of each exam for each students, to know his weak
+          points and the weak points of the entire group.
+          {/* تقييم فوري للطالب بمجرد انتهائه من الامتحان، وتحليل لنتيجته وتحديد
+          نقاط قوته ونقاط ضعفه */}
         </li>
-        <li className="flex items-center gap-1">
+        {/* <li className="flex items-center gap-1">
           <Image src={tick} alt="checkmark" width={24} height={24} />
+          
           إمكانية جدولة الامتحان وتحديد مواعيدها وعدد المحاولات لكل طالب
-        </li>
+        </li> */}
       </ul>
       <Link
-        href={"/#register"}
+        href={"/teacher-register"}
         className="self-center px-8 py-3 my-4 text-3xl text-center text-white rounded-md shadow-md shadow-primary w-fit bg-accent"
       >
-        سجل الان
+        Sign Up now
       </Link>
     </div>
   );
