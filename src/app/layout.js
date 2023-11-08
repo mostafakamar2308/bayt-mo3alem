@@ -4,7 +4,7 @@ import "./globals.css";
 import { yantramanav } from "./fonts";
 
 export const metadata = {
-  title: "بيت المعلم",
+  title: "Word Thread",
   description: "The exam platform for all english teachers",
 };
 

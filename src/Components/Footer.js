@@ -4,7 +4,7 @@ import telegram from "@/Assets/telegram.png";
 function Footer() {
   return (
     <footer className="flex justify-between p-2">
-      <div>كل الحقوق محفوظة ©بيت المعلم</div>
+      <div>All Rights Reserved ©WordThread</div>
       <div className="flex gap-4">
         <a
           href="https://www.facebook.com/madareg.barmja"
