@@ -5,7 +5,7 @@ import { toastSuccess } from "@/Components/Toast";
 function ExamSharerButton({ examID }) {
   const copy = async () => {
     await navigator.clipboard.writeText(
-      "https://bayt-mo3alem.vercel.app/exam/" + examID
+      "https://word-thread.vercel.app/exam/" + examID
     );
     toastSuccess("Link Copied successfully");
   };

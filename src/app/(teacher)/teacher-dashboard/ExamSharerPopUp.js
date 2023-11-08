@@ -4,7 +4,7 @@ import SharerClientComponent from "./SharerClientComponent";
 
 function ExamSharerPopUp({ examID }) {
   const [examURL, setExamURL] = useState(
-    "https://bayt-mo3alem.vercel.app/exam/" + examID
+    "https://word-thread.vercel.app/exam/" + examID
   );
   const closePopup = () => {
     setExamURL("");
