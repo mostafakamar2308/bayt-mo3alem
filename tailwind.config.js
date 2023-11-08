@@ -9,6 +9,7 @@ module.exports = {
     { pattern: /bg-/ },
     "sticky",
     "hidden",
+    "lg:inline",
     { pattern: /max-w/, variants: ["lg", "hover", "lg:hover"] },
     { pattern: /rounded/ },
   ],
