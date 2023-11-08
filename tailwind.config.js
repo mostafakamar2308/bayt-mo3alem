@@ -8,7 +8,7 @@ module.exports = {
   safelist: [
     { pattern: /bg-/ },
     "sticky",
-    { pattern: /h-/ },
+    { pattern: /max-/ },
     { pattern: /rounded/ },
   ],
   theme: {

@@ -6,7 +6,7 @@ import Image from "next/image";
 import LogoutBtn from "./LogoutBtn";
 function Sidebar() {
   return (
-    <div className="flex p-2 bg-purple w-screen  lg:flex-col justify-between lg:h-screen lg:sticky top-0 text-white border-r-2  lg:grow-[4] lg:max-w-[200px] lg:items-center">
+    <div className="flex p-2 bg-purple w-screen   lg:flex-col justify-between lg:h-screen lg:sticky top-0 text-white border-r-2  lg:grow-[4] lg:max-w-[200px] lg:items-center">
       <div className="flex gap-5 lg:flex-col lg:py-7">
         <Link
           href={"/teacher-dashboard"}
