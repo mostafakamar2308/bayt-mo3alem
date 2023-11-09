@@ -54,7 +54,11 @@ function RegisterationForm() {
         onChange={handleChange}
       />
       <div className="flex gap-2">
-        <select className="p-2 border-2" onChange={handleChange} name="gender">
+        <select
+          className="p-2 bg-white border-2 text-text"
+          onChange={handleChange}
+          name="gender"
+        >
           <option value="male">Mr</option>
           <option value={"female"}>Miss</option>
         </select>
@@ -78,7 +82,7 @@ function RegisterationForm() {
       />
       <button
         onClick={handleRegister}
-        className="py-3 mt-4 font-bold bg-white text-text bg-orange"
+        className="py-3 mt-4 font-bold text-white bg-orange"
       >
         Register
       </button>

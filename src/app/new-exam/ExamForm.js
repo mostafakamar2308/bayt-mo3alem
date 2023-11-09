@@ -164,7 +164,7 @@ function ExamForm() {
         <div className="flex justify-center">
           <button
             onClick={handleSubmit}
-            className="w-full px-4 py-2 text-xl font-bold border-2 border-gray-400 rounded-lg lg:w-1/2 bg-orange hover:shadow-md"
+            className="w-full px-4 py-2 text-xl font-bold text-white border-2 border-gray-400 rounded-lg lg:w-1/2 bg-orange hover:shadow-md"
           >
             Puplish Exam{" "}
           </button>

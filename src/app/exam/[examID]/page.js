@@ -33,9 +33,17 @@ async function page({ params }) {
   if (!isSubscribed) {
     student.teacherIds.push(teacher._id);
     if (teacher.studentIds.length > 0) {
-      teacher.studentIds
-        .find((grade) => grade.grade === student.grade)
-        .students.push(student._id);
+      const studentGrade = teacher.studentIds.find(
+        (grade) => grade.grade === student.grade
+      );
+      if (studentGrade) {
+        studentGrade.students.push(student._id);
+      } else {
+        teacher.studentIds.push({
+          grade: student.grade,
+          students: [student._id],
+        });
+      }
     } else {
       teacher.studentIds = [{ grade: student.grade, students: [student._id] }];
     }
