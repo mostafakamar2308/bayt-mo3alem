@@ -45,7 +45,7 @@ function SearchComponent({ setter }) {
           <input
             name="name"
             value={query.name}
-            className="h-12 text-xl bg-transparent border-l indent-3 border-purple grow"
+            className="h-12 text-xl bg-white border-l text-text indent-3 border-purple grow"
             onChange={handleChange}
             placeholder="اسم المدرس"
           />

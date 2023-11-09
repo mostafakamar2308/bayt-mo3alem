@@ -44,14 +44,14 @@ function LoginForm() {
       <input
         onChange={handleInput}
         type="email"
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text"
         name="email"
         placeholder="mostafa@gmail.com"
       />
       <input
         type="password"
         onChange={handleInput}
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text"
         name="password"
         placeholder="**********"
       />

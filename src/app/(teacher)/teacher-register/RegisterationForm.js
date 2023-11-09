@@ -35,7 +35,7 @@ function RegisterationForm() {
   return (
     <form
       onSubmit={handleRegister}
-      className="flex flex-col max-w-full gap-2 text-white"
+      className="flex flex-col max-w-full gap-2 bg-white text-text"
     >
       <input
         name="email"
@@ -43,13 +43,13 @@ function RegisterationForm() {
         type="email"
         value={formDetails.email}
         onChange={handleChange}
-        className="w-full p-2 text-xl text-white border-2 rounded-md"
+        className="w-full p-2 text-xl bg-white border-2 rounded-md text-text"
       />
       <input
         name="phoneNumber"
         placeholder="01234567891"
         type="tel"
-        className="w-full p-2 text-xl text-white border-2 rounded-md"
+        className="w-full p-2 text-xl bg-white border-2 rounded-md text-text"
         value={formDetails.phoneNumber}
         onChange={handleChange}
       />
@@ -62,7 +62,7 @@ function RegisterationForm() {
           name="name"
           placeholder="مصطفى قمر"
           type="text"
-          className="w-full p-2 text-xl text-white border-2 rounded-md"
+          className="w-full p-2 text-xl bg-white border-2 rounded-md text-text"
           value={formDetails.name}
           onChange={handleChange}
         />
@@ -71,14 +71,14 @@ function RegisterationForm() {
       <input
         name="password"
         placeholder="***********"
-        className="w-full p-2 text-xl text-white border-2 rounded-md"
+        className="w-full p-2 text-xl bg-white border-2 rounded-md text-text"
         type="password"
         value={formDetails.password}
         onChange={handleChange}
       />
       <button
         onClick={handleRegister}
-        className="py-3 mt-4 font-bold text-white bg-orange"
+        className="py-3 mt-4 font-bold bg-white text-text bg-orange"
       >
         Register
       </button>

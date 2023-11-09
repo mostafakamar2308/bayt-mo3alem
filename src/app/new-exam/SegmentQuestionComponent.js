@@ -119,7 +119,7 @@ function SegmentQuestionComponent({
               id={"questionHead-" + questionIndex}
               name="questionHead"
               onChange={handleChangeQuestionHead}
-              className="w-full bg-transparent border rounded-md"
+              className="w-full bg-transparent bg-white border rounded-md text-text"
               placeholder="Question Head"
               defaultValue={question.questionHead}
             />
@@ -132,7 +132,7 @@ function SegmentQuestionComponent({
                 >
                   <input
                     onChange={changeAnswerValue}
-                    className="p-1 rounded-md"
+                    className="p-1 bg-white rounded-md text-text"
                     placeholder="Answer"
                     defaultValue={answer.value}
                   />

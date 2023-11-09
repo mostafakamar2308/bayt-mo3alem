@@ -32,7 +32,7 @@ async function page({ searchParams }) {
               </p>
               <div>
                 <Suspense fallback={<div>Loading Your Exams ...</div>}>
-                  {group.exams.map((exam) => {
+                  {group.exams.reverse().map((exam) => {
                     return <ExamCard key={exam.date} examId={exam.id} />;
                   })}
                 </Suspense>

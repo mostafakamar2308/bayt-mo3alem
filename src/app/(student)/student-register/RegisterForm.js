@@ -44,7 +44,7 @@ function RegisterForm() {
         name="name"
         placeholder="مصطفى قمر"
         type="text"
-        className="p-2 text-xl border-2 rounded-md grow"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text grow"
         value={formDetails.name}
         onChange={handleChange}
       />{" "}
@@ -54,18 +54,18 @@ function RegisterForm() {
         type="email"
         value={formDetails.email}
         onChange={handleChange}
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text"
       />
       <input
         name="parentPhoneNumber"
         placeholder="رقم هاتف والدك"
         type="tel"
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text"
         value={formDetails.phoneNumber}
         onChange={handleChange}
       />
       <select
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text"
         name="grade"
         onChange={handleChange}
         value={formDetails.grade}
@@ -79,7 +79,7 @@ function RegisterForm() {
       <input
         name="password"
         placeholder="***********"
-        className="p-2 text-xl border-2 rounded-md"
+        className="p-2 text-xl bg-white border-2 rounded-md text-text"
         type="password"
         value={formDetails.password}
         onChange={handleChange}

@@ -63,7 +63,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
             id={index}
             required
             onChange={changeAnswerText}
-            className="p-3 bg-transparent border-b-2 lg:w-3/4"
+            className="p-3 bg-transparent bg-white border-b-2 lg:w-3/4 text-text"
             placeholder="Answer"
           />
           <input
@@ -73,7 +73,7 @@ function MCQQuestionComponent({ addNewQuestion, questionType, closeModal }) {
             id={index}
             defaultChecked={answer.correct}
             name="answer"
-          ></input>
+          />
         </div>
       ))}
       <textarea

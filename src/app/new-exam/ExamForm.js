@@ -102,7 +102,7 @@ function ExamForm() {
       <div className="flex flex-wrap gap-4 lg:w-4/5 grow lg:items-center lg:flex-nowrap">
         <input
           autoFocus
-          className="w-full py-2 text-lg bg-transparent border-b-2 border-gray-400 indent-2 focus:outline-none"
+          className="w-full py-2 text-lg bg-transparent border-b-2 border-gray-400 indent-2 focus:outline-none text-text"
           placeholder="Exam Name"
           name="examName"
           onChange={changeExamDetails}
@@ -161,10 +161,10 @@ function ExamForm() {
           )
         : null}
       {examDetails.questions.length > 0 && (
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 text-xl font-bold border-2 border-gray-400 rounded-lg bg-orange hover:shadow-md"
+            className="w-full px-4 py-2 text-xl font-bold border-2 border-gray-400 rounded-lg lg:w-1/2 bg-orange hover:shadow-md"
           >
             Puplish Exam{" "}
           </button>

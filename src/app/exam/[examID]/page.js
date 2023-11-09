@@ -33,12 +33,15 @@ async function page({ params }) {
   if (!isSubscribed) {
     student.teacherIds.push(teacher._id);
     if (teacher.studentIds.length > 0) {
-      teacher.studentIds[0].push(student._id);
+      teacher.studentIds
+        .find((grade) => grade.grade === student.grade)
+        .students.push(student._id);
     } else {
       teacher.studentIds = [{ grade: student.grade, students: [student._id] }];
     }
     await student.save();
     await teacher.save();
+    console.log(teacher);
   }
   // if (!isSubscribed) {
   //   teacher.studentIds.push({

@@ -14,10 +14,17 @@ export async function POST(request) {
     const user = jwt.verify(token.value, process.env.JWT_SECRET);
     const teacherId = new mongoose.Types.ObjectId(user.id);
     let teacher = await Teacher.findOne({ _id: teacherId });
+    const totalScore = questions.reduce((accu, curr) => {
+      if (curr.questionType !== "segment") {
+        return accu + 1;
+      } else {
+        return curr.questionContent.questions.length + accu;
+      }
+    }, 0);
     const newExam = await exam.create({
       examName,
       grade,
-      totalScore: questions.length,
+      totalScore,
       Questions: questions,
       from,
       teacherId,
