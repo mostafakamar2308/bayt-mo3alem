@@ -9,11 +9,13 @@ import SegmentComponent from "../SegmentComponent";
 import MCQComponent from "./MCQComponent";
 import { archivo_black } from "@/app/fonts";
 import { Suspense } from "react";
+import StudentCard from "./StudentCard";
 
 async function page({ params }) {
   await dbConnect();
   const exam = await Exam.findOne({ _id: params.examID });
   const range = dateRange(exam.from);
+  console.log(exam);
 
   const gradeDistribution = getGradeDistribution(
     exam.stats.scores,
@@ -69,7 +71,9 @@ async function page({ params }) {
         </div>
       </div>
       <div className="p-4 mt-2 border rounded-md">
-        <h3 className={`${archivo_black.variable} text-xl font-semibold`}>
+        <h3
+          className={`${archivo_black.variable} text-2xl font-semibold border-b w-fit pr-2 border-black`}
+        >
           Grades Distribution
         </h3>
         <Suspense
@@ -79,14 +83,9 @@ async function page({ params }) {
         </Suspense>
       </div>
       <div className="mt-3">
-        <h3
-          className={`${archivo_black.variable} text-xl font-semibold border-b w-fit pr-2 border-black`}
-        >
-          Question Analysis
-        </h3>
         <div className="p-4 mt-2 border rounded-md">
           <h3
-            className={`${archivo_black.variable} text-base lg:text-xl font-bold`}
+            className={`${archivo_black.variable} text-2xl font-semibold border-b w-fit pr-2 border-black`}
           >
             Section Analysis (most problematic sections)
           </h3>
@@ -101,7 +100,29 @@ async function page({ params }) {
             </Suspense>
           </div>
         </div>
-        <div className="p-4">
+        <div className="p-4 mt-2 border rounded-md">
+          <h3
+            className={`${archivo_black.variable} mb-3 text-2xl font-semibold border-b w-fit pr-2 border-black`}
+          >
+            Students:
+          </h3>{" "}
+          <Suspense fallback={<div>Loading Students ...</div>}>
+            {exam.studentIds.map((ele) => (
+              <StudentCard
+                id={ele}
+                key={ele.toString()}
+                examID={exam._id.toString()}
+                totalScore={exam.totalScore}
+              />
+            ))}
+          </Suspense>
+        </div>
+        <div className="p-4 mt-2 border rounded-md">
+          <h3
+            className={`${archivo_black.variable} text-2xl font-semibold border-b w-fit pr-2 border-black`}
+          >
+            Question Analysis
+          </h3>
           {exam.Questions.map((question, index) => {
             if (question.questionType !== "segment") {
               return (
