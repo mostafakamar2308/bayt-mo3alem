@@ -1,5 +1,6 @@
 import TooltipContainer from "./TooltipContainer";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { yantramanav } from "./fonts";
 
@@ -15,6 +16,7 @@ export default async function RootLayout({ children }) {
         <ToastContainer />
         <TooltipContainer />
         <main className=" grow">{children}</main>
+        <Analytics mode="production" />
       </body>
     </html>
   );

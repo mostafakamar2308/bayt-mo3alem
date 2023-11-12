@@ -13,6 +13,7 @@
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/interaction": "^6.1.9",
     "@fullcalendar/react": "^6.1.9",
+    "@vercel/analytics": "^1.1.1",
     "autoprefixer": "10.4.15",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
