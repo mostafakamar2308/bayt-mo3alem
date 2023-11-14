@@ -1,4 +1,5 @@
 "use client";
+import { toastError, toastSuccess } from "@/Components/Toast";
 import { subjects } from "@/constants";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -24,12 +25,13 @@ function RegisterationForm() {
       body: JSON.stringify(formDetails),
     });
     const response = await req.json();
+    console.log(response);
     if (response.success) {
-      setRequestState("Success");
+      toastSuccess("Registered Successfully");
       Router.push("/new-exam");
       Router.refresh();
     } else {
-      setRequestState("Failed");
+      toastError(response.message);
     }
   };
   return (
@@ -64,7 +66,7 @@ function RegisterationForm() {
         </select>
         <input
           name="name"
-          placeholder="مصطفى قمر"
+          placeholder="Mohamed Ahmed"
           type="text"
           className="w-full p-2 text-xl bg-white border-2 rounded-md text-text"
           value={formDetails.name}

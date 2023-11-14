@@ -9,16 +9,16 @@ export default function RegisterTeacher() {
       <div className="lg:w-[40%] max-w-full p-8 border text-center bg-white rounded-2xl">
         <h2 className="text-2xl font-bold">السلام عليكم</h2>
         <p className="mb-2 text-lg font-semibold lg:mb-8">
-          يمكنك تسجيل حساب جديد عن طريق ملء بياناتك هنا
+          You can register by filling your account details
         </p>
         <RegisterationForm />
         <p className="mt-2">
-          لديك حساب بالفعل؟{" "}
+          Have an account already?{" "}
           <Link
             href={"/teacher-login"}
             className="transition-all duration-300 border-b-2 hover:border-lightBlue "
           >
-            سجل الدخول
+            Login Here{" "}
           </Link>
         </p>
       </div>

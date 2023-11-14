@@ -15,7 +15,10 @@ export async function POST(request) {
     }
     const teacher = await Teacher.findOne({ email: email });
     if (!teacher) {
-      return NextResponse.json({ success: false, message: "No teacher found" });
+      return NextResponse.json({
+        success: false,
+        message: "No teacher with that email was found",
+      });
     }
     const isMatch = await teacher.comparePassword(password);
     if (!isMatch) {
@@ -36,6 +39,10 @@ export async function POST(request) {
       return NextResponse.json({ success: true }, { status: 201 });
     }
   } catch (e) {
-    console.error(e);
+    return NextResponse.json({
+      success: false,
+      error: e,
+      message: "An error has occured, please try again later",
+    });
   }
 }

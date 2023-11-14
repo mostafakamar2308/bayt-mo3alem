@@ -24,9 +24,24 @@ export async function POST(request) {
     cookieStore.set("token", token);
     return NextResponse.json({ success: true, token });
   } catch (error) {
-    return NextResponse.json({
-      success: false,
-      msg: error,
-    });
+    if (error.name === "ValidationError") {
+      console.log(Object.keys(error.errors)[0]);
+      return NextResponse.json({
+        success: false,
+        message: error.errors[Object.keys(error.errors)[0]].message,
+      });
+    } else if (error.code === 11000) {
+      return NextResponse.json({
+        success: false,
+        error,
+        message: `please use another ${Object.keys(error.keyPattern)[0]}`,
+      });
+    } else {
+      return NextResponse.json({
+        success: false,
+        error,
+        message: "An error has occured, please try again later",
+      });
+    }
   }
 }

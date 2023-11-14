@@ -16,11 +16,12 @@ function LoginForm() {
       body: JSON.stringify(formDetails),
     });
     const response = await req.json();
+    console.log(response);
     if (response.success) {
       toastSuccess("Logged In successfully");
       Router.push("/teacher-dashboard");
     } else {
-      toastError("An error has occured, Try again");
+      toastError(response.message);
     }
   };
   const handleInput = function (e) {

@@ -9,16 +9,16 @@ export default function Page() {
       <div className="lg:w-[40%] max-w-full p-8 h-fit border text-center bg-white rounded-2xl">
         <h2 className="text-2xl font-bold">السلام عليكم</h2>
         <p className="mb-2 text-lg font-semibold lg:mb-8">
-          يمكنك تسجيل حساب جديد عن طريق ملء بياناتك هنا
+          Log In using your email and password
         </p>
         <LoginForm />
         <p className="mt-2">
-          ليس لديك حساب؟{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href={"/teacher-register"}
             className="transition-all duration-300 border-b-2 hover:border-lightBlue "
           >
-            سجل حساب جديد
+            Register Now{" "}
           </Link>
         </p>
       </div>
