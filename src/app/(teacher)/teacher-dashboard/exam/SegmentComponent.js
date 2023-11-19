@@ -32,7 +32,7 @@ function SegmentComponent({ question, students }) {
                   data-tooltip-id="correctNo"
                   data-tooltip-content={`${answer.stats.choosen} of ${students} choose this `}
                 >
-                  {(answer.stats.choosen / students) * 100 || 0}%
+                  {((answer.stats.choosen / students) * 100).toFixed(2) || 0}%
                 </p>
               </h5>
             ))}

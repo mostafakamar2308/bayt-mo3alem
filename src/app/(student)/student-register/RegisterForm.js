@@ -30,7 +30,7 @@ function RegisterForm() {
         Router.push("/student-dashboard");
         Router.refresh();
       } else {
-        console.log(response);
+        console.error(response);
         toastError("حدث خطأ حاول مرة أخري");
       }
     } catch (error) {

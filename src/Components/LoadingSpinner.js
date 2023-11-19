@@ -2,7 +2,7 @@ function LoadingSpinner() {
   return (
     <div
       id="spinner"
-      className="flex items-center justify-center h-screen space-x-2 bg-white "
+      className="flex items-center justify-center h-screen space-x-2 "
     >
       <span className="sr-only">Loading...</span>
       <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>

@@ -25,7 +25,7 @@ export async function POST(request) {
   } catch (error) {
     return NextResponse.json({
       success: false,
-      msg: error,
+      message: error,
     });
   }
 }

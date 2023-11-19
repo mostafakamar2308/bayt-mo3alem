@@ -21,6 +21,7 @@ function LoginForm() {
       toastSuccess("Logged In successfully");
       Router.push("/teacher-dashboard");
     } else {
+      console.error(response.message);
       toastError(response.message);
     }
   };

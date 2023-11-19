@@ -22,7 +22,6 @@ function LeadRegisterationForm() {
       body: JSON.stringify(leadFormDetails),
     });
     const response = await req.json();
-    console.log(response);
     if (response.success) {
       toastSuccess("تم تسجيلك بنجاح");
     } else {

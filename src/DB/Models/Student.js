@@ -9,8 +9,6 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide name"],
     maxlength: 50,
-    minlength: 3,
-    unique: true,
   },
   email: {
     type: String,
@@ -25,7 +23,6 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide password"],
     maxlength: 100,
-    minlength: 6,
   },
   grade: {
     type: String,

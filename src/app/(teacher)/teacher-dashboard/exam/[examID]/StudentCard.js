@@ -8,7 +8,7 @@ async function StudentCard({ id, examID, totalScore }) {
     (exam) => exam.exam.examId.toString() === examID
   );
   return (
-    <div className="flex items-center justify-between p-2 border rounded-md border-purple">
+    <div className="flex items-center justify-between p-2 mt-2 border rounded-md shadow-sm shadow-purple border-purple">
       <h1 className="text-xl font-semibold lg:text-2xl lg:fontbold">
         {student.name}
       </h1>

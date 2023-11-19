@@ -25,7 +25,18 @@ async function page({ params }) {
     exam.Questions,
     exam.studentIds.length
   );
-
+  // TODO: sort questions by difficulty
+  const sortedExamQuestions = exam.Questions.filter(
+    (question) => question.questionType !== "segment"
+  ).sort(
+    (a, b) =>
+      a.questionContent.stats.correctNo - b.questionContent.stats.correctNo
+  );
+  const problematicQuestions = sortedExamQuestions.filter(
+    (question) =>
+      question.questionContent.stats.correctNo ===
+      sortedExamQuestions[0].questionContent.stats.correctNo
+  );
   return (
     <div className="p-2 ">
       <div className="flex items-center gap-2">
@@ -45,7 +56,9 @@ async function page({ params }) {
       <div className="flex flex-col flex-wrap gap-4 mt-2 lg:flex-row lg:justify-center">
         <div className="text-center border rounded-lg lg:p-3 lg:grow">
           <h3 className="text-xl lg:text-3xl">Average Score</h3>
-          <h2 className="text-2xl text-center">{exam.stats.averageScore}</h2>
+          <h2 className="text-2xl text-center">
+            {exam.stats.averageScore.toFixed(2)}
+          </h2>
         </div>
         <div className="text-center border rounded-lg lg:p-3 lg:grow">
           <h3 className="text-xl lg:text-3xl">Average Time</h3>
@@ -119,10 +132,25 @@ async function page({ params }) {
         </div>
         <div className="p-4 mt-2 border rounded-md">
           <h3
-            className={`${archivo_black.variable} text-2xl font-semibold border-b w-fit pr-2 border-black`}
+            className={`${archivo_black.variable} mb-3 text-2xl font-semibold border-b w-fit pr-2 border-black`}
+          >
+            Problematic Questions:
+          </h3>
+          {problematicQuestions.map((question, index) => (
+            <MCQComponent
+              students={exam.studentIds.length}
+              key={index}
+              question={question}
+            />
+          ))}
+        </div>
+        <div className="p-4 mt-2 border rounded-md">
+          <h3
+            className={`${archivo_black.variable} text-2xl font-bold border-b w-fit pr-2 border-black`}
           >
             Question Analysis
           </h3>
+
           {exam.Questions.map((question, index) => {
             if (question.questionType !== "segment") {
               return (
