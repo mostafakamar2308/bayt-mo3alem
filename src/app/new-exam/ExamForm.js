@@ -76,14 +76,15 @@ function ExamForm() {
     }
   };
 
-  const changeQuestionAnswer = (newQuestion) => {
+  const changeQuestion = (newQuestion) => {
     console.log(newQuestion);
     setExamDetails((prev) => {
       const newQuestions = prev.questions.map((question) => {
-        console.log(question);
         if (question.questionType !== "segment") {
           return question.questionContent.questionHead ==
-            newQuestion.questionContent.questionHead
+            newQuestion.questionContent.questionHead ||
+            question.questionContent.answers[0].value ===
+              newQuestion.questionContent.answers[0].value
             ? newQuestion
             : question;
         } else {
@@ -144,13 +145,13 @@ function ExamForm() {
         {examDetails.questions.map((question, index) =>
           question.questionType !== "segment" ? (
             <MCQQuestionInView
-              changeQuestionAnswer={changeQuestionAnswer}
+              changeQuestion={changeQuestion}
               question={question}
               key={question.questionHead}
             />
           ) : (
             <SegmentQuestionInView
-              changeQuestionAnswer={changeQuestionAnswer}
+              changeQuestion={changeQuestion}
               question={question}
               key={index}
             />
