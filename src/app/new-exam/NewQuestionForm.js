@@ -20,9 +20,7 @@ function NewQuestionForm({ addNewQuestion, closeModal }) {
             name="type"
             onChange={handleChange}
           >
-            <option value="vocabulary">Vocabulary</option>
-            <option value="expression">Expression</option>
-            <option value="grammer">Grammer</option>
+            <option value="general">General</option>
             <option value="translation">Translation</option>
             <option value="segment">Segment</option>
           </select>

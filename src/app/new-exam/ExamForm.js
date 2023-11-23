@@ -4,6 +4,7 @@ import plus from "@/Assets/plus.png";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import NewQuestionForm from "./NewQuestionForm";
+import GenerateQuestions from "./GenerateQuestions";
 import { grades } from "@/constants";
 import MCQQuestionInView from "./MCQQuestionInView";
 import { DtPicker } from "react-calendar-datetime-picker";
@@ -31,11 +32,16 @@ function ExamForm() {
   const Router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const [newQuestionModal, setNewQuestionModal] = useState(false);
+  const [generateQuestionModal, setGenerateQuestionModal] = useState(false);
   useEffect(() => {
     setIsMounted(true);
   }, []);
   const toggleNewQuestionPop = () => {
     setNewQuestionModal((prev) => !prev);
+  };
+
+  const toggleGenerateQuestionModal = () => {
+    setGenerateQuestionModal((prev) => !prev);
   };
   const changeExamDetails = (e) => {
     setExamDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -45,6 +51,13 @@ function ExamForm() {
     setExamDetails((prev) => ({
       ...prev,
       questions: [...prev.questions, question],
+    }));
+  };
+  const addNewQuestions = (questions) => {
+    console.log(questions);
+    setExamDetails((prev) => ({
+      ...prev,
+      questions: [...prev.questions, ...questions],
     }));
   };
 
@@ -145,6 +158,13 @@ function ExamForm() {
         )}
       </div>
       <button
+        onClick={toggleGenerateQuestionModal}
+        className="fixed flex gap-2 p-2 px-4 rounded-full bg-secondary bottom-24 right-5 lg:right-10"
+      >
+        <Image src={plus} alt="add new question" width={28} />
+        Generate Questions
+      </button>
+      <button
         onClick={toggleNewQuestionPop}
         className="fixed flex gap-2 p-2 px-4 rounded-full bg-secondary bottom-10 right-5 lg:right-10"
       >
@@ -160,6 +180,17 @@ function ExamForm() {
             document.body
           )
         : null}
+      {isMounted && generateQuestionModal
+        ? createPortal(
+            <GenerateQuestions
+              addNewQuestions={addNewQuestions}
+              addSegmentQuestion={addNewQuestion}
+              closeModal={toggleGenerateQuestionModal}
+            />,
+            document.body
+          )
+        : null}
+
       {examDetails.questions.length > 0 && (
         <div className="flex justify-center">
           <button
