@@ -10,7 +10,6 @@ function GenerateQuestions({
   const [questionType, setQuestionType] = useState("general");
   const [content, setContent] = useState("");
   const [segmentContent, setSegmentContent] = useState("");
-  const [step, setStep] = useState("copy");
   const changeSegmentContent = (e) => {
     setSegmentContent(e.target.value);
   };

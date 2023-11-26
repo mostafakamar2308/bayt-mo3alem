@@ -1,14 +1,9 @@
 const generateMCQQuestionsFromText = (text) => {
-  const QUESTIONSPATTERN = /\d[\-\)\.]?/gi;
+  const QUESTIONSPATTERN = /\d+[\-\)\.]/gi;
   const noNewLines = text.replace(/\n/g, " ");
   const questions = Array.from(noNewLines.matchAll(QUESTIONSPATTERN));
-  console.log(questions);
   const formattedQuestion = questions.map((question, questionIndex) => {
     if (questionIndex < questions.length - 1) {
-      console.log({
-        currentQuestionIndex: question.index,
-        nexQuestionIndex: questions[questionIndex + 1].index,
-      });
       return question.input.substring(
         question.index,
         questions[questionIndex + 1].index
@@ -21,10 +16,62 @@ const generateMCQQuestionsFromText = (text) => {
   // check for dots with spaces after or newlines
 
   // Check for answers patterns
-  const ANSWERSPATTERN = /[\w\p{sc=Arabic}][\-\)\.]/giu;
-  const DOTSPATTERN = /\.[\s{2,}\n]/gi;
+
   console.log(formattedQuestion);
-  const finalQuestionArr = [];
+
+  const ANSWERSPATTERN = /\w[\-\)\.]/giu;
+  const finalQuestionArr = formattedQuestion.map((currentQuestion) => {
+    const currentQuestionParts = Array.from(
+      currentQuestion.matchAll(ANSWERSPATTERN)
+    );
+    const preFinalQuestionFormat = currentQuestionParts.filter((part) => {
+      const prevChar = currentQuestion[part.index - 1];
+      if (prevChar && prevChar.match(/(\d+)?\s/i)) {
+        part.input = currentQuestion;
+        return part;
+      }
+    });
+
+    return preFinalQuestionFormat;
+  });
+
+  const finalQuestionArray = finalQuestionArr.map((question) => {
+    console.log(question);
+    const questionTempelate = {
+      questionType: "general",
+      questionContent: {
+        questionHead: question[0].input.substring(0, question[0].index - 1),
+        answers: question.map((answ, index) => {
+          if (question[index + 1]) {
+            return {
+              value: answ.input.substring(
+                answ.index,
+                question[index + 1].index
+              ),
+              correct: null,
+              stats: { choosen: 0 },
+            };
+          } else {
+            return {
+              value: answ.input.substring(answ.index),
+              correct: null,
+              stats: { choosen: 0 },
+            };
+          }
+        }),
+        explaination: "",
+        stats: { correctNo: 0 },
+      },
+    };
+    return questionTempelate;
+  });
+  console.log(finalQuestionArray);
+  return finalQuestionArray;
+};
+export default generateMCQQuestionsFromText;
+
+/*
+  const DOTSPATTERN = /\.[\s{2,}\n]/gi;
   for (let i = 0; i < formattedQuestion.length; i++) {
     //added spaces at the end of the text to avoid problems with end of sentence dot recogintion
     const currQuestion = `${formattedQuestion[i]}    `;
@@ -84,9 +131,4 @@ const generateMCQQuestionsFromText = (text) => {
     finalQuestionArr.push(question);
   }
 
-  return finalQuestionArr;
-  //   const formmatedQuestions = questions.map((question) =>
-  //     question.split(ANSWERSPATTERN)
-  //   );
-};
-export default generateMCQQuestionsFromText;
+*/
