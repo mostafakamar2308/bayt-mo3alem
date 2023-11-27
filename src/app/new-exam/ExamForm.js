@@ -80,18 +80,22 @@ function ExamForm() {
     console.log(newQuestion);
     setExamDetails((prev) => {
       const newQuestions = prev.questions.map((question) => {
-        if (question.questionType !== "segment") {
-          return question.questionContent.questionHead ==
-            newQuestion.questionContent.questionHead ||
-            question.questionContent.answers[0].value ===
-              newQuestion.questionContent.answers[0].value
-            ? newQuestion
-            : question;
+        if (question.questionType === newQuestion.questionType) {
+          if (question.questionType !== "segment") {
+            return question.questionContent.questionHead ==
+              newQuestion.questionContent.questionHead ||
+              question.questionContent.answers[0].value ===
+                newQuestion.questionContent.answers[0].value
+              ? newQuestion
+              : question;
+          } else {
+            return question.questionContent.segment ==
+              newQuestion.questionContent.segment
+              ? newQuestion
+              : question;
+          }
         } else {
-          return question.questionContent.segment ==
-            newQuestion.questionContent.segment
-            ? newQuestion
-            : question;
+          return question;
         }
       });
       return {

@@ -19,7 +19,7 @@ const generateMCQQuestionsFromText = (text) => {
 
   console.log(formattedQuestion);
 
-  const ANSWERSPATTERN = /\w[\-\)\.]/giu;
+  const ANSWERSPATTERN = /[\w\p{sc=Arabic}][\-\)\.]/giu;
   const finalQuestionArr = formattedQuestion.map((currentQuestion) => {
     const currentQuestionParts = Array.from(
       currentQuestion.matchAll(ANSWERSPATTERN)
