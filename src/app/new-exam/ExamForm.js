@@ -59,6 +59,7 @@ function ExamForm() {
       ...prev,
       questions: [...prev.questions, ...questions],
     }));
+    toastSuccess("Choose the answers for your questions");
   };
 
   const handleSubmit = async () => {
@@ -75,6 +76,12 @@ function ExamForm() {
       toastError("حدث خطأ حاول مرة أخري");
     }
   };
+
+  //TODO: Implement these functions
+  const validateMCQ = (question) => {};
+  const validateSegment = (segment) => {};
+
+  const scrollToQuestion = (questionHead, type) => {};
 
   const changeQuestion = (newQuestion) => {
     console.log(newQuestion);

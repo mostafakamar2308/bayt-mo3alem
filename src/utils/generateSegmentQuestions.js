@@ -17,7 +17,8 @@ function generateSegmentQuestions(segment, segmentQuestions) {
   // check for dots with spaces after or newlines
 
   // Check for answers patterns
-  const ANSWERSPATTERN = /[\w\p{sc=Arabic}][\-\)\.]/giu;
+  // const ANSWERSPATTERN = /[\w\p{sc=Arabic}][\-\)\.]/giu;
+  const ANSWERSPATTERN = /([\w\p{sc=Arabic}][\-\)\.]|[ⒶⒷⒸⒹⓐⓑⓒⓓ])/giu;
   const segmentQuestion = {
     questionType: "segment",
     questionContent: {

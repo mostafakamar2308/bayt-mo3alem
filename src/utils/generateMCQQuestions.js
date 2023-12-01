@@ -1,7 +1,6 @@
 const generateMCQQuestionsFromText = (text) => {
   const QUESTIONSPATTERN = /\d+[\-\)\.]/gi;
-  const noNewLines = text.replace(/\n/g, " ");
-  const questions = Array.from(noNewLines.matchAll(QUESTIONSPATTERN));
+  const questions = Array.from(text.matchAll(QUESTIONSPATTERN));
   const formattedQuestion = questions.map((question, questionIndex) => {
     if (questionIndex < questions.length - 1) {
       return question.input.substring(
@@ -13,13 +12,9 @@ const generateMCQQuestionsFromText = (text) => {
     }
   });
 
-  // check for dots with spaces after or newlines
-
   // Check for answers patterns
 
-  console.log(formattedQuestion);
-
-  const ANSWERSPATTERN = /[\w\p{sc=Arabic}][\-\)\.]/giu;
+  const ANSWERSPATTERN = /([\w\p{sc=Arabic}][\-\)\.]|[ⒶⒷⒸⒹⓐⓑⓒⓓ🅐🅑🅒🅓])/giu;
   const finalQuestionArr = formattedQuestion.map((currentQuestion) => {
     const currentQuestionParts = Array.from(
       currentQuestion.matchAll(ANSWERSPATTERN)
@@ -34,9 +29,9 @@ const generateMCQQuestionsFromText = (text) => {
 
     return preFinalQuestionFormat;
   });
+  console.log(finalQuestionArr);
 
   const finalQuestionArray = finalQuestionArr.map((question) => {
-    console.log(question);
     const questionTempelate = {
       questionType: "general",
       questionContent: {
